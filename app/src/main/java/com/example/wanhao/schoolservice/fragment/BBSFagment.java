@@ -21,7 +21,7 @@ public class BBSFagment extends LazyLoadFragment{
     TabLayout tabLayout;
     List<Fragment> fragmentList;
     FragmentPagerAdapter adapter;
-    EntertainBBSFragment fgHot;
+    BBSEntertainFragment fgHot;
     StudyBBSFragment studyBBSFragment;
 
     @Override
@@ -40,7 +40,7 @@ public class BBSFagment extends LazyLoadFragment{
         tabLayout =  findViewById(R.id.fg_bbs_tab);
 
         fragmentList = new ArrayList<>();
-        fgHot = new EntertainBBSFragment();
+        fgHot = new BBSEntertainFragment();
         studyBBSFragment = new StudyBBSFragment();
         fragmentList.add(fgHot);
         fragmentList.add(studyBBSFragment);

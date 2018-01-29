@@ -52,7 +52,7 @@ public abstract class LazyLoadFragment extends Fragment {
             return;
         }
 
-        if (getUserVisibleHint()) {
+        if (getUserVisibleHint()&&!isLoad) {
             Log.i(TAG, "isCanLoadData: lazyLoad");
             lazyLoad();
             isLoad = true;
