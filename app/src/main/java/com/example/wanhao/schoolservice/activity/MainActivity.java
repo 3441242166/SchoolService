@@ -1,11 +1,13 @@
 package com.example.wanhao.schoolservice.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
-import android.view.View;
+import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -15,7 +17,7 @@ import com.example.wanhao.schoolservice.fragment.BBSFagment;
 import com.example.wanhao.schoolservice.fragment.MainFragment;
 import com.example.wanhao.schoolservice.fragment.MessageFragment;
 import com.example.wanhao.schoolservice.fragment.UserFragment;
-import com.example.wanhao.schoolservice.myview.BottomView;
+import com.example.wanhao.schoolservice.util.BottomNavigationViewHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +25,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
-    BottomView bottomUser;
-    BottomView bottomMain;
-    BottomView bottomMessage;
-    BottomView bottomMarket;
+    BottomNavigationView navigation;
     NoScrollViewPager viewPager;
 
     private UserFragment userFragment;
@@ -46,48 +45,37 @@ public class MainActivity extends AppCompatActivity {
 
         initView();
         initEvent();
-        changeState(0);
+
     }
 
     private void initEvent() {
         viewPager.setNoScroll(true);
 
-        bottomMain.setOnClickListener(new View.OnClickListener() {
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                changeState(0);
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.main_menu_home:
+                        viewPager.setCurrentItem(0);
+                        return true;
+                    case R.id.main_menu_message:
+                        viewPager.setCurrentItem(1);
+                        return true;
+                    case R.id.main_menu_bbs:
+                        viewPager.setCurrentItem(2);
+                        return true;
+                    case R.id.main_menu_user:
+                        viewPager.setCurrentItem(3);
+                        return true;
+                }
+                return false;
             }
         });
-
-        bottomUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeState(3);
-            }
-        });
-
-        bottomMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeState(1);
-            }
-        });
-
-        bottomMarket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeState(2);
-            }
-        });
-
     }
 
     private void initView() {
+        navigation = (BottomNavigationView)findViewById(R.id.ac_main_bottom);
         viewPager = (NoScrollViewPager) findViewById(R.id.ac_main_viewpager);
-        bottomUser = (BottomView) findViewById(R.id.ac_main_user);
-        bottomMain = (BottomView) findViewById(R.id.ac_main_main);
-        bottomMessage = (BottomView) findViewById(R.id.ac_main_message);
-        bottomMarket = (BottomView) findViewById(R.id.ac_main_market);
 
         fragmentList = new ArrayList<>();
         mainFragment = new MainFragment();
@@ -99,12 +87,13 @@ public class MainActivity extends AppCompatActivity {
         fragmentList.add(BBSFagment);
         fragmentList.add(userFragment);
 
+        BottomNavigationViewHelper.disableShiftMode(navigation);
+
         adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 return fragmentList.get(position);
             }
-
             @Override
             public int getCount() {
                 return fragmentList.size();
@@ -112,39 +101,6 @@ public class MainActivity extends AppCompatActivity {
         };
         viewPager.setAdapter(adapter);
 
-    }
-
-    private void changeState(int position){
-        bottomUser.setImage(R.drawable.mainicon_3);
-        bottomMain.setImage(R.drawable.mainicon_0);
-        bottomMessage.setImage(R.drawable.mainicon_1);
-        bottomMarket.setImage(R.drawable.mainicon_2);
-
-        bottomUser.setTextColor(false);
-        bottomMain.setTextColor(false);
-        bottomMessage.setTextColor(false);
-        bottomMarket.setTextColor(false);
-
-        viewPager.setCurrentItem(position);
-
-        switch (position){
-            case 0:
-                bottomMain.setTextColor(true);
-                bottomMain.setImage(R.drawable.mainicon_click_0);
-                break;
-            case 1:
-                bottomMessage.setTextColor(true);
-                bottomMessage.setImage(R.drawable.mainicon_click_1);
-                break;
-            case 2:
-                bottomMarket.setTextColor(true);
-                bottomMarket.setImage(R.drawable.mainicon_click_2);
-                break;
-            case 3:
-                bottomUser.setTextColor(true);
-                bottomUser.setImage(R.drawable.mainicon_click_3);
-                break;
-        }
     }
 
     @Override

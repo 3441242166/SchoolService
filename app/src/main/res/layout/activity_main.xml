@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:BottomView="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -18,40 +18,11 @@
         android:layout_height="1dp"
         android:background="#ededed" />
 
-    <LinearLayout
-        android:elevation="8dp"
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/ac_main_bottom"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="10"
-        android:orientation="horizontal">
-
-        <com.example.wanhao.schoolservice.myview.BottomView
-            android:id="@+id/ac_main_main"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="1"
-            BottomView:text="主界面" />
-
-        <com.example.wanhao.schoolservice.myview.BottomView
-            android:id="@+id/ac_main_message"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            BottomView:text="信息" />
-
-        <com.example.wanhao.schoolservice.myview.BottomView
-            android:id="@+id/ac_main_market"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            BottomView:text="论坛" />
-
-        <com.example.wanhao.schoolservice.myview.BottomView
-            android:id="@+id/ac_main_user"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            BottomView:text="个人" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/menu_main_bottom"
+        />
 </LinearLayout>
