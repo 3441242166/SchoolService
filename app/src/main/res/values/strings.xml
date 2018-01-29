@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">校园通</string>
+    <string name="search_name">search...</string>
+    <string name="str_phone_num_cannot_empty">账号不能为空</string>
+    <string name="str_password_cannot_empty">密码不能为空</string>
+    <dimen name="button_elevation">2dp</dimen>
+</resources>
