@@ -1,5 +1,9 @@
 package com.example.wanhao.schoolservice.fragment;
 
+import android.support.design.widget.AppBarLayout;
+import android.util.Log;
+import android.view.View;
+
 import com.example.wanhao.schoolservice.R;
 import com.example.wanhao.schoolservice.util.ImageLoader;
 import com.youth.banner.Banner;
@@ -14,6 +18,15 @@ import java.util.List;
 public class MainFragment extends LazyLoadFragment{
 
     private Banner banner;
+    private AppBarLayout barLayout;
+
+    private CollapsingToolbarLayoutState state;
+
+    private enum CollapsingToolbarLayoutState {
+        EXPANDED,
+        COLLAPSED,
+        INTERNEDIATE
+    }
 
     @Override
     protected int setContentView() {
@@ -23,6 +36,8 @@ public class MainFragment extends LazyLoadFragment{
     @Override
     protected void lazyLoad() {
         banner = findViewById(R.id.fg_main_banner);
+        barLayout = findViewById(R.id.fg_main_appbar);
+
         //设置图片加载器
         banner.setImageLoader(new ImageLoader());
         //设置图片集合
@@ -36,6 +51,35 @@ public class MainFragment extends LazyLoadFragment{
         banner.setImages(list);
         //banner设置方法全部调用完毕时最后调用
         banner.start();
+        initEvent();
+    }
+
+    private void initEvent() {
+        barLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                Log.i(TAG, "onOffsetChanged: ver ="+verticalOffset);
+                Log.i(TAG, "onOffsetChanged: max ="+(1.0-(float)Math.abs(verticalOffset)/(float)appBarLayout.getTotalScrollRange()));
+                if (verticalOffset == 0) {
+                    if (state != CollapsingToolbarLayoutState.EXPANDED) {
+                        state = CollapsingToolbarLayoutState.EXPANDED;//修改状态标记为展开
+                    }
+                } else if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
+                    if (state != CollapsingToolbarLayoutState.COLLAPSED) {
+                        banner.setVisibility(View.GONE);
+                        state = CollapsingToolbarLayoutState.COLLAPSED;//修改状态标记为折叠
+                    }
+                } else {
+                    if (state != CollapsingToolbarLayoutState.INTERNEDIATE) {
+                        if(state == CollapsingToolbarLayoutState.COLLAPSED){
+                            banner.setVisibility(View.VISIBLE);
+                        }
+                        state = CollapsingToolbarLayoutState.INTERNEDIATE;//修改状态标记为中间
+                    }
+                    banner.setAlpha((1-(float)Math.abs(verticalOffset)/(float)appBarLayout.getTotalScrollRange()));
+                }
+            }
+        });
     }
 
 

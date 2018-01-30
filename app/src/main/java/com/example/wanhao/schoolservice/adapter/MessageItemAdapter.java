@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.wanhao.schoolservice.R;
-import com.example.wanhao.schoolservice.bean.MessageNormal;
 import com.example.wanhao.schoolservice.bean.MessageImage;
+import com.example.wanhao.schoolservice.bean.MessageNormal;
 import com.example.wanhao.schoolservice.bean.RecycleViewItemData;
 
 import java.util.List;

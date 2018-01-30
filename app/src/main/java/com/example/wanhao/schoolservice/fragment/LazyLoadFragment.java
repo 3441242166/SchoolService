@@ -26,7 +26,6 @@ public abstract class LazyLoadFragment extends Fragment {
         view = inflater.inflate(setContentView(), container, false);
         isInit = true;
         /**初始化的时候去加载数据**/
-        Log.i(TAG, "onCreateView: firstLoad");
         isCanLoadData();
         return view;
     }
