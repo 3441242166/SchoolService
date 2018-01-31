@@ -1,11 +1,13 @@
 package com.example.wanhao.schoolservice.activity;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
+import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -26,8 +28,7 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
     FloatingActionButton fab;
     EditText etUsername;
     EditText etPassword;
-    TextInputLayout count;
-    TextInputLayout password;
+    CardView cardView;
 
     LodingPresenter presenter;
 
@@ -47,7 +48,11 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ac_loding_fab:
-                startActivity(new Intent(this, RegisterActivity.class));
+                Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this,
+                        //Pair.create((View)btGo, btGo.getTransitionName()),
+                        Pair.create((View)fab, fab.getTransitionName()),
+                        Pair.create((View)cardView, cardView.getTransitionName())).toBundle();
+                startActivity(new Intent(this, RegisterActivity.class), bundle);
                 break;
             case R.id.ac_loding_loding:
                 hideKeyboard();
@@ -64,9 +69,8 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
         etUsername = (EditText) findViewById(R.id.ac_loding_count);
         btGo = (Button) findViewById(R.id.ac_loding_loding);
         fab = (FloatingActionButton) findViewById(R.id.ac_loding_fab);
-        count = (TextInputLayout) findViewById(R.id.ac_loding_count_layout);
-        password = (TextInputLayout) findViewById(R.id.ac_loding_password_layout);
         forget = (TextView) findViewById(R.id.ac_loding_forget);
+        cardView = (CardView) findViewById(R.id.ac_loding_cardview);
 
         presenter = new LodingPresenter(this,this);
     }
