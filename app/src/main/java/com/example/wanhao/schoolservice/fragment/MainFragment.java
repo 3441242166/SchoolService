@@ -1,10 +1,10 @@
 package com.example.wanhao.schoolservice.fragment;
 
 import android.support.design.widget.AppBarLayout;
-import android.util.Log;
 import android.view.View;
 
 import com.example.wanhao.schoolservice.R;
+import com.example.wanhao.schoolservice.base.LazyLoadFragment;
 import com.example.wanhao.schoolservice.util.ImageLoader;
 import com.youth.banner.Banner;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * Created by wanhao on 2017/11/18.
  */
 
-public class MainFragment extends LazyLoadFragment{
+public class MainFragment extends LazyLoadFragment {
 
     private Banner banner;
     private AppBarLayout barLayout;
@@ -58,12 +58,11 @@ public class MainFragment extends LazyLoadFragment{
         barLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                Log.i(TAG, "onOffsetChanged: ver ="+verticalOffset);
-                Log.i(TAG, "onOffsetChanged: max ="+(1.0-(float)Math.abs(verticalOffset)/(float)appBarLayout.getTotalScrollRange()));
                 if (verticalOffset == 0) {
                     if (state != CollapsingToolbarLayoutState.EXPANDED) {
                         state = CollapsingToolbarLayoutState.EXPANDED;//修改状态标记为展开
                     }
+                    banner.setAlpha(1);
                 } else if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
                     if (state != CollapsingToolbarLayoutState.COLLAPSED) {
                         banner.setVisibility(View.GONE);

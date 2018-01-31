@@ -11,6 +11,7 @@ import com.example.wanhao.schoolservice.activity.LodingActivity;
 import com.example.wanhao.schoolservice.activity.MessageActivity;
 import com.example.wanhao.schoolservice.activity.SettingActivity;
 import com.example.wanhao.schoolservice.activity.UserMessageActivity;
+import com.example.wanhao.schoolservice.base.LazyLoadFragment;
 import com.example.wanhao.schoolservice.myview.ListItemView;
 
 import de.hdodenhof.circleimageview.CircleImageView;

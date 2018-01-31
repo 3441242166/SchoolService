@@ -3,6 +3,7 @@ package com.example.wanhao.schoolservice.activity;
 import android.os.Bundle;
 
 import com.example.wanhao.schoolservice.R;
+import com.example.wanhao.schoolservice.base.TopBarBaseActivity;
 import com.example.wanhao.schoolservice.fragment.SettingFragment;
 
 public class SettingActivity extends TopBarBaseActivity {

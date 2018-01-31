@@ -44,6 +44,7 @@
 
 
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -54,7 +55,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:background="@drawable/button_state_0"
+                    android:background="@drawable/bt_shape"
+                    android:stateListAnimator="@drawable/state_list_animator_big"
                     android:elevation="@dimen/button_elevation"
                     android:text="一卡通" />
 
@@ -64,7 +66,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:background="@drawable/button_state_0"
+                    android:background="@drawable/bt_shape"
+                    android:stateListAnimator="@drawable/state_list_animator_big"
                     android:elevation="@dimen/button_elevation"
                     android:text="市场" />
             </LinearLayout>
@@ -82,7 +85,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:background="@drawable/button_state_0"
+                    android:background="@drawable/bt_shape"
+                    android:stateListAnimator="@drawable/state_list_animator_big"
                     android:elevation="@dimen/button_elevation"
                     android:text="失物招领" />
 
@@ -93,39 +97,29 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:background="@drawable/button_state_0"
+                    android:background="@drawable/bt_shape"
+                    android:stateListAnimator="@drawable/state_list_animator_big"
                     android:elevation="@dimen/button_elevation"
                     android:text="表白墙" />
 
             </LinearLayout>
 
-            <TextView
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_height="10dp"
                 android:background="@color/itemColor" />
 
-            <Button
-                style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-                android:background="@drawable/button_state_0"
-                android:elevation="@dimen/button_elevation"
-                android:text="打卡签到" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/itemColor" />
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="-  猜你喜欢  -"
+                android:textSize="14sp" />
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="#c5c5c5" />
 

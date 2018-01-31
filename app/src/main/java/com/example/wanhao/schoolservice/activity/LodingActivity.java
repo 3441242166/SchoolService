@@ -72,23 +72,28 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
-    public void loginSuccess(String msg) {
-
-    }
-
-    @Override
-    public void loginFailed(String msg) {
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void validateError(String msg,int type) {
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void gotoChooseInterestedCategoryActivity(String msg) {
 
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void disimissProgress() {
+
+    }
+
+    @Override
+    public void loadDataSuccess(Object tData) {
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
+    @Override
+    public void loadDataError(String throwable) {
+        Toast.makeText(this,throwable,Toast.LENGTH_SHORT).show();
     }
 
     private void hideKeyboard() {
@@ -98,5 +103,6 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
                     hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
+
 }
 

@@ -1,4 +1,4 @@
-package com.example.wanhao.schoolservice.fragment;
+package com.example.wanhao.schoolservice.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

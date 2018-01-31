@@ -9,11 +9,13 @@ import android.widget.Toast;
 
 import com.example.wanhao.schoolservice.R;
 import com.example.wanhao.schoolservice.adapter.MessageItemAdapter;
+import com.example.wanhao.schoolservice.base.LazyLoadFragment;
 import com.example.wanhao.schoolservice.bean.MessageNormal;
 import com.example.wanhao.schoolservice.bean.MessageImage;
 import com.example.wanhao.schoolservice.bean.RecycleViewItemData;
 import com.example.wanhao.schoolservice.bean.UserMessage;
 import com.example.wanhao.schoolservice.view.IMainMessageView;
+import com.yalantis.phoenix.PullToRefreshView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,7 @@ public class MessageFragment extends LazyLoadFragment implements IMainMessageVie
 
     private TextView txNext;
     private RecyclerView recyclerView;
+    private PullToRefreshView refreshView;
 
     private MessageItemAdapter adapter;
     private StaggeredGridLayoutManager mLayoutManager;
@@ -49,6 +52,8 @@ public class MessageFragment extends LazyLoadFragment implements IMainMessageVie
 
     private void initView() {
         recyclerView = (RecyclerView) findViewById(R.id.fg_message_recycler);
+        refreshView = (PullToRefreshView) findViewById(R.id.fg_message_refresh);
+
         mLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(mLayoutManager);
     }
@@ -92,6 +97,18 @@ public class MessageFragment extends LazyLoadFragment implements IMainMessageVie
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(getActivity(),""+position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        refreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshView.setRefreshing(false);
+                    }
+                }, 2000);
             }
         });
     }

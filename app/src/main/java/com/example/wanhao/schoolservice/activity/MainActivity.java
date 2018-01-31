@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initEvent() {
         //viewPager.setNoScroll(true);
-
+        viewPager.setOverScrollMode(viewPager.OVER_SCROLL_NEVER);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         viewPager.setAdapter(adapter);
-        viewPager.setOffscreenPageLimit(2);
+        viewPager.setOffscreenPageLimit(3);
     }
 
     @Override

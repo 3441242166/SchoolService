@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.example.wanhao.schoolservice.R;
+import com.example.wanhao.schoolservice.base.LazyLoadFragment;
 import com.example.wanhao.schoolservice.util.ImageLoader;
 import com.youth.banner.Banner;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * Created by wanhao on 2017/11/21.
  */
 
-public class BBSEntertainFragment extends LazyLoadFragment{
+public class BBSEntertainFragment extends LazyLoadFragment {
 
     private Banner banner;
 

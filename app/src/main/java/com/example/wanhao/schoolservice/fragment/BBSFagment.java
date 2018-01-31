@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.example.wanhao.schoolservice.R;
+import com.example.wanhao.schoolservice.base.LazyLoadFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * Created by wanhao on 2017/11/18.
  */
 
-public class BBSFagment extends LazyLoadFragment{
+public class BBSFagment extends LazyLoadFragment {
     private static final String TAG = "BBSFagment";
 
     ViewPager viewPager;

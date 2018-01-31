@@ -1,4 +1,4 @@
-package com.example.wanhao.schoolservice.activity;
+package com.example.wanhao.schoolservice.base;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

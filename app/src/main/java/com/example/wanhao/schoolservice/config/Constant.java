@@ -26,7 +26,7 @@ public class Constant {
     /*********************请求相关********************************/
 
     /*********************文件命名相关********************************/
-    public static final String  SHAREDPREFERENCES_DEFAULT_NAME = "img_classify_prefs";
+    public static final String  SHAREDPREFERENCES_DEFAULT_NAME = "app_prefs";
     public static final String LODING_TOKEN = "token";
     /*********************文件命名相关********************************/
 

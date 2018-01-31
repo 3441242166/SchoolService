@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.example.wanhao.schoolservice.R;
+import com.example.wanhao.schoolservice.base.TopBarBaseActivity;
 import com.example.wanhao.schoolservice.fragment.BBSNotifyFragment;
 import com.example.wanhao.schoolservice.fragment.OtherNotifyFragment;
 

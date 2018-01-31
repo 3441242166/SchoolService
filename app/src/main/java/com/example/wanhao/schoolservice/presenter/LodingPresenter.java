@@ -4,7 +4,20 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.example.wanhao.schoolservice.bean.HttpResult;
+import com.example.wanhao.schoolservice.config.ApiConstant;
+import com.example.wanhao.schoolservice.config.Constant;
+import com.example.wanhao.schoolservice.service.LodingService;
+import com.example.wanhao.schoolservice.util.RetrofitHelper;
+import com.example.wanhao.schoolservice.util.SaveDataUtil;
 import com.example.wanhao.schoolservice.view.ILodingView;
+import com.google.gson.Gson;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
+import retrofit2.Response;
 
 /**
  * Created by wanhao on 2017/11/22.
@@ -25,14 +38,41 @@ public class LodingPresenter implements ILoginPresenter{
     public void login(String phoneNum, String password) {
         Log.i(TAG, "login: "+phoneNum+password);
         if (TextUtils.isEmpty(phoneNum)){
-            iLoginView.validateError("账号不能为空",0);
+            iLoginView.loadDataError("账号不能为空");
             return;
         }
         if (TextUtils.isEmpty(password)){
-            iLoginView.validateError("密码不能为空",1);
+            iLoginView.loadDataError("密码不能为空");
             return;
         }
-
+        //开始向服务器请求
+        LodingService service = RetrofitHelper.get(LodingService.class);
+        service.loding(phoneNum,password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Response<ResponseBody>>() {
+                    @Override
+                    public void accept(Response<ResponseBody> response) throws Exception {
+                        Log.i(TAG, "accept: ");
+                        Gson gson = new Gson();
+                        HttpResult result = gson.fromJson(response.body().string(),HttpResult.class);
+                        //token 获取与保存
+                        String token = (String) result.getData();
+                        String oldToken = SaveDataUtil.getValueFromSharedPreferences(mContext, Constant.SHAREDPREFERENCES_DEFAULT_NAME, ApiConstant.OAUTH_TOKEN);
+                        if (TextUtils.isEmpty(oldToken)){
+                            iLoginView.gotoChooseInterestedCategoryActivity("");
+                        }else {
+                            iLoginView.loadDataSuccess("");
+                        }
+                        SaveDataUtil.saveToSharedPreferences(mContext, Constant.SHAREDPREFERENCES_DEFAULT_NAME,ApiConstant.OAUTH_TOKEN, token);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        iLoginView.loadDataError(throwable.toString());
+                        Log.w(TAG, throwable);
+                    }
+                });
     }
 }
 

@@ -10,7 +10,7 @@
     <com.example.wanhao.schoolservice.customizeview.NoScrollViewPager
         android:id="@+id/ac_main_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1" />
 
     <TextView
