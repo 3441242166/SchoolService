@@ -67,7 +67,6 @@
 
             <Button
                 android:layout_marginRight="10dp"
-                android:background="@drawable/messageicon_good0"
                 android:id="@+id/ad_message_good"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -75,7 +74,6 @@
 
             <Button
                 android:layout_marginRight="10dp"
-                android:background="@drawable/messageicon_reply"
                 android:id="@+id/ad_message_remark"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -83,7 +81,6 @@
 
             <Button
                 android:layout_marginRight="10dp"
-                android:background="@drawable/messageicon_share"
                 android:id="@+id/ad_message_image_share"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

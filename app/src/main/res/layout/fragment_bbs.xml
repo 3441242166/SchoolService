@@ -48,7 +48,7 @@
             android:elevation="10dp"
             app:backgroundTint="@color/cardview_light_background"
             app:fabSize="mini"
-            app:srcCompat="@drawable/icon_add" />
+            app:srcCompat="@drawable/plus" />
 
     </RelativeLayout>
 

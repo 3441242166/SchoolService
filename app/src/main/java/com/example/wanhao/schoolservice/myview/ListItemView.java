@@ -30,7 +30,7 @@ public class ListItemView extends LinearLayout {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.imageList);
 
         String text = ta.getString(R.styleable.imageList_text);
-        int id = ta.getResourceId(R.styleable.imageList_background,R.drawable.icon_add);
+        int id = ta.getResourceId(R.styleable.imageList_background,R.drawable.plus);
 
         // 获取控件
         mTextView = (TextView) findViewById(R.id.list_view_text);

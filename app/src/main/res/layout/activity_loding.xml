@@ -4,105 +4,138 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.wanhao.schoolservice.activity.LodingActivity">
+    android:background="@drawable/bck_loding"
+    tools:context=".activity.LodingActivity">
 
-    <ImageView
-        android:scaleType="centerCrop"
-        android:src="@drawable/loding_bck"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
-            android:text="@string/app_name"
-            android:textAlignment="viewStart"
-            android:textAllCaps="false"
-            android:textColor="@color/writeText"
-            android:textSize="36sp" />
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/ac_loding_countlayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
-
-            <EditText
-                android:id="@+id/ac_loding_count"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="输入学号/电话号"
-                android:inputType="phone"
-                android:textColor="#ffffff" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/ac_loding_passwordlayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/ac_loding_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="输入密码"
-                android:inputType="textPassword"
-                android:textColor="#ffffff" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <Button
-            android:id="@+id/ac_loding_loding"
-            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:background="@drawable/button_state_1"
-            android:text="登陆"
-            android:textColor="@color/writeText" />
+    <android.support.v7.widget.CardView
+        android:id="@+id/ac_loding_cardview"
+        android:layout_width="300dp"
+        android:layout_height="350dp"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp">
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:background="#2fa881" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="50dp"
+                    android:text="校园通"
+                    android:textColor="#FFCC00"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:paddingEnd="30dp"
+                android:paddingStart="50dp">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/ac_loding_count_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHint="#c5c5c5">
+
+                    <EditText
+                        android:id="@+id/ac_loding_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/selector_bg_edit"
+                        android:hint="用户名"
+                        android:inputType="textPersonName"
+                        android:paddingBottom="2dp"
+                        android:textColor="#2fa881"
+                        android:textCursorDrawable="@drawable/bg_input_cursor"
+                        android:textSize="13sp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:paddingEnd="30dp"
+                android:paddingStart="50dp">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/ac_loding_password_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColorHint="#c5c5c5">
+
+                    <EditText
+                        android:id="@+id/ac_loding_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/selector_bg_edit"
+                        android:hint="密码"
+                        android:inputType="textPassword"
+                        android:paddingBottom="2dp"
+                        android:textColor="#2fa881"
+                        android:textCursorDrawable="@drawable/bg_input_cursor"
+                        android:textSize="13sp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="25dp"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/ac_loding_loding"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bt_shape"
+                    android:stateListAnimator="@drawable/state_list_animator_z"
+                    android:text="登陆"
+                    android:textColor="#FFCC00"></Button>
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/ac_loding_forget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:text="忘记密码？"
-                android:textColor="@color/blueText" />
-
-            <TextView
-                android:id="@+id/ac_loding_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="新用户注册"
-                android:textColor="@color/blueText" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="忘记密码"
+                android:textColor="#9a9a9a"
+                android:textSize="14sp" />
         </LinearLayout>
+    </android.support.v7.widget.CardView>
 
-    </LinearLayout>
-
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/ac_loding_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/ac_loding_cardview"
+        android:layout_alignTop="@id/ac_loding_cardview"
+        android:layout_marginEnd="-20dp"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/plus"
+        android:transitionName="loginFab"
+        app:fabSize="normal" />
 
 </RelativeLayout>

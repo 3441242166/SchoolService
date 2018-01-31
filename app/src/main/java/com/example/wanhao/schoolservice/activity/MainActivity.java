@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
-        viewPager.setNoScroll(true);
+        //viewPager.setNoScroll(true);
 
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
