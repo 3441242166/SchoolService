@@ -1,10 +1,13 @@
 package com.example.wanhao.schoolservice.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -16,8 +19,6 @@ import com.example.wanhao.schoolservice.customizeview.NoScrollViewPager;
 import com.example.wanhao.schoolservice.fragment.BBSFagment;
 import com.example.wanhao.schoolservice.fragment.MainFragment;
 import com.example.wanhao.schoolservice.fragment.MessageFragment;
-import com.example.wanhao.schoolservice.fragment.UserFragment;
-import com.example.wanhao.schoolservice.util.BottomNavigationViewHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView navigation;
     NoScrollViewPager viewPager;
+    DrawerLayout drawer;
+    NavigationView navigationView;
 
-    private UserFragment userFragment;
     private MessageFragment messageFragment;
     private BBSFagment BBSFagment;
     private MainFragment mainFragment;
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
-        //viewPager.setNoScroll(true);
+        viewPager.setNoScroll(true);
         viewPager.setOverScrollMode(viewPager.OVER_SCROLL_NEVER);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -64,30 +66,58 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.main_menu_bbs:
                         viewPager.setCurrentItem(2);
                         return true;
-                    case R.id.main_menu_user:
-                        viewPager.setCurrentItem(3);
-                        return true;
                 }
                 return false;
             }
         });
+
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                drawer.closeDrawers();
+                switch (item.getItemId()){
+                    case R.id.main_drawer_message:
+                        startActivity(new Intent(MainActivity.this, MessageActivity.class));
+                        break;
+                    case R.id.main_drawer_collect:
+                        break;
+                    case R.id.main_drawer_care:
+                        startActivity(new Intent(MainActivity.this, CareActivity.class));
+                        break;
+                    case R.id.main_drawer_leaveword:
+                        break;
+                    case R.id.main_drawer_exit:
+                        startActivity(new Intent(MainActivity.this, LodingActivity.class));
+                        break;
+                    case R.id.main_drawer_set:
+                        startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                        break;
+                    case R.id.main_drawer_money:
+                        break;
+                }
+                return true;
+            }
+        });
+
     }
 
     private void initView() {
+
+        navigationView =(NavigationView) findViewById(R.id.ac_main_nav);
         navigation = (BottomNavigationView)findViewById(R.id.ac_main_bottom);
         viewPager = (NoScrollViewPager) findViewById(R.id.ac_main_viewpager);
+        drawer = (DrawerLayout) findViewById(R.id.ac_main_draw);
 
         fragmentList = new ArrayList<>();
         mainFragment = new MainFragment();
         messageFragment = new MessageFragment();
         BBSFagment = new BBSFagment();
-        userFragment = new UserFragment();
+
         fragmentList.add(mainFragment);
         fragmentList.add(messageFragment);
         fragmentList.add(BBSFagment);
-        fragmentList.add(userFragment);
 
-        BottomNavigationViewHelper.disableShiftMode(navigation);
 
         adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -100,7 +130,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         viewPager.setAdapter(adapter);
-        viewPager.setOffscreenPageLimit(3);
+        //viewPager.setOffscreenPageLimit(2);
+
     }
 
     @Override

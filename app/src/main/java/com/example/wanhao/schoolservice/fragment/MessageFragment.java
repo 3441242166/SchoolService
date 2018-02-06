@@ -10,8 +10,8 @@ import android.widget.Toast;
 import com.example.wanhao.schoolservice.R;
 import com.example.wanhao.schoolservice.adapter.MessageItemAdapter;
 import com.example.wanhao.schoolservice.base.LazyLoadFragment;
-import com.example.wanhao.schoolservice.bean.MessageNormal;
 import com.example.wanhao.schoolservice.bean.MessageImage;
+import com.example.wanhao.schoolservice.bean.MessageNormal;
 import com.example.wanhao.schoolservice.bean.RecycleViewItemData;
 import com.example.wanhao.schoolservice.bean.UserMessage;
 import com.example.wanhao.schoolservice.view.IMainMessageView;
@@ -54,15 +54,17 @@ public class MessageFragment extends LazyLoadFragment implements IMainMessageVie
         recyclerView = (RecyclerView) findViewById(R.id.fg_message_recycler);
         refreshView = (PullToRefreshView) findViewById(R.id.fg_message_refresh);
 
+
         mLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(mLayoutManager);
+        //refreshView.setNestedScrollingEnabled(false);
     }
 
     private void initData() {
         messageList = new ArrayList<>();
         RecycleViewItemData data;
 
-        for(int x=0;x<10;x++) {
+        for(int x=0;x<5;x++) {
             if(x%2==0){
                 MessageNormal message = new MessageNormal();
                 UserMessage userMessage = new UserMessage();
@@ -111,6 +113,7 @@ public class MessageFragment extends LazyLoadFragment implements IMainMessageVie
                 }, 2000);
             }
         });
+
     }
 
     @Override

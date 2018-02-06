@@ -1,6 +1,8 @@
 package com.example.wanhao.schoolservice.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -8,19 +10,40 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.wanhao.schoolservice.R;
+import com.example.wanhao.schoolservice.presenter.RegisterPresenter;
+import com.example.wanhao.schoolservice.view.IRegisterView;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener,IRegisterView{
     private static final String TAG = "RegisterActivity";
 
     Button btGo;
     FloatingActionButton fab;
     EditText etUsername;
     EditText etPassword;
-    EditText etSchoolId;
-    EditText etSchool;
+    EditText etCode;
+    TextView tvCode;
     CardView cardView;
+
+    RegisterPresenter registerPresenter;
+
+    CountDownTimer timer = new CountDownTimer(60000, 1000) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            tvCode.setText(millisUntilFinished/1000 + "秒");
+        }
+
+        @Override
+        public void onFinish() {
+            tvCode.setClickable(true);
+            tvCode.setText("获取验证码");
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +58,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void InitView() {
         etPassword = (EditText) findViewById(R.id.ac_register_password);
         etUsername = (EditText) findViewById(R.id.ac_register_count);
-        etSchoolId = (EditText) findViewById(R.id.ac_register_schoolid);
-        etSchool = (EditText) findViewById(R.id.ac_register_school);
+        etCode = (EditText) findViewById(R.id.ac_register_code);
+        tvCode = (TextView) findViewById(R.id.ac_register_getcode);
         btGo = (Button) findViewById(R.id.ac_register_loding);
         fab = (FloatingActionButton) findViewById(R.id.ac_register_fab);
         cardView = (CardView) findViewById(R.id.ac_register_cardview);
 
+        registerPresenter = new RegisterPresenter(this,this);
+
         btGo.setOnClickListener(this);
         fab.setOnClickListener(this);
-
+        tvCode.setOnClickListener(this);
     }
 
     private void InitEvent() {
@@ -54,12 +79,38 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ac_register_loding:
-
+                SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+                pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                pDialog.setTitleText("Loading");
+                pDialog.setCancelable(true);
+                pDialog.show();
+                break;
+            case R.id.ac_register_getcode:
+                registerPresenter.getVerificationCode(etUsername.getText().toString(), tvCode, timer);
                 break;
             case R.id.ac_register_fab:
-                finish();
+                onBackPressed();
                 break;
         }
     }
 
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void disimissProgress() {
+
+    }
+
+    @Override
+    public void loadDataSuccess(Object tData) {
+
+    }
+
+    @Override
+    public void loadDataError(String throwable) {
+        Toast.makeText(this,throwable,Toast.LENGTH_SHORT).show();
+    }
 }

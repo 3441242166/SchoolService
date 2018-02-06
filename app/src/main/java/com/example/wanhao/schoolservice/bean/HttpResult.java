@@ -1,7 +1,7 @@
 package com.example.wanhao.schoolservice.bean;
 
 /**
- * Created by szh on 2017/5/13.
+ * Created by wanhao on 2017/5/13.
  */
 
 public class HttpResult<T> {

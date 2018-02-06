@@ -5,12 +5,20 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="西安科技大学"
+            android:textColor="@color/writeText"
+            android:textSize="18sp" />
 
     </android.support.v7.widget.Toolbar>
 

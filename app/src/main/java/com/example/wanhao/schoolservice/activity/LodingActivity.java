@@ -3,11 +3,11 @@ package com.example.wanhao.schoolservice.activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -20,6 +20,8 @@ import com.example.wanhao.schoolservice.R;
 import com.example.wanhao.schoolservice.presenter.LodingPresenter;
 import com.example.wanhao.schoolservice.view.ILodingView;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class LodingActivity extends AppCompatActivity implements View.OnClickListener,ILodingView {
     private static final String TAG = "LodingActivity";
 
@@ -29,6 +31,7 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
     EditText etUsername;
     EditText etPassword;
     CardView cardView;
+    SweetAlertDialog pDialog;
 
     LodingPresenter presenter;
 
@@ -48,11 +51,13 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ac_loding_fab:
-                Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this,
-                        //Pair.create((View)btGo, btGo.getTransitionName()),
-                        Pair.create((View)fab, fab.getTransitionName()),
-                        Pair.create((View)cardView, cardView.getTransitionName())).toBundle();
-                startActivity(new Intent(this, RegisterActivity.class), bundle);
+//                Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this,
+//                        //Pair.create((View)btGo, btGo.getTransitionName()),
+//                        Pair.create((View)fab, fab.getTransitionName()),
+//                        Pair.create((View)cardView, cardView.getTransitionName())).toBundle();
+//                startActivity(new Intent(this, RegisterActivity.class), bundle);
+                startActivity(new Intent(this, RegisterActivity.class), ActivityOptions.makeSceneTransitionAnimation(this,
+                        fab, fab.getTransitionName()).toBundle());
                 break;
             case R.id.ac_loding_loding:
                 hideKeyboard();
@@ -72,6 +77,11 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
         forget = (TextView) findViewById(R.id.ac_loding_forget);
         cardView = (CardView) findViewById(R.id.ac_loding_cardview);
 
+        pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Loading");
+        pDialog.setCancelable(false);
+
         presenter = new LodingPresenter(this,this);
     }
 
@@ -82,22 +92,24 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void showProgress() {
-
+        pDialog.show();
     }
 
     @Override
     public void disimissProgress() {
-
+        pDialog.hide();
     }
 
     @Override
     public void loadDataSuccess(Object tData) {
         startActivity(new Intent(this, MainActivity.class));
+        pDialog.hide();
     }
 
     @Override
     public void loadDataError(String throwable) {
         Toast.makeText(this,throwable,Toast.LENGTH_SHORT).show();
+        pDialog.hide();
     }
 
     private void hideKeyboard() {

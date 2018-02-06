@@ -15,4 +15,5 @@ import retrofit2.http.Query;
 public interface LodingService {
     @GET("user/login")
     Observable<Response<ResponseBody>> loding(@Query(ApiConstant.LODING_COUNT) String count, @Query(ApiConstant.LODING_PASSWORD) String password);
+
 }

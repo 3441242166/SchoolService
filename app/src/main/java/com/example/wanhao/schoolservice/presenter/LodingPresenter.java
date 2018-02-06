@@ -46,6 +46,7 @@ public class LodingPresenter implements ILoginPresenter{
             return;
         }
         //开始向服务器请求
+        iLoginView.showProgress();
         LodingService service = RetrofitHelper.get(LodingService.class);
         service.loding(phoneNum,password)
                 .subscribeOn(Schedulers.io())
@@ -60,8 +61,10 @@ public class LodingPresenter implements ILoginPresenter{
                         String token = (String) result.getData();
                         String oldToken = SaveDataUtil.getValueFromSharedPreferences(mContext, Constant.SHAREDPREFERENCES_DEFAULT_NAME, ApiConstant.OAUTH_TOKEN);
                         if (TextUtils.isEmpty(oldToken)){
+                            iLoginView.disimissProgress();
                             iLoginView.gotoChooseInterestedCategoryActivity("");
                         }else {
+                            iLoginView.disimissProgress();
                             iLoginView.loadDataSuccess("");
                         }
                         SaveDataUtil.saveToSharedPreferences(mContext, Constant.SHAREDPREFERENCES_DEFAULT_NAME,ApiConstant.OAUTH_TOKEN, token);
@@ -69,6 +72,7 @@ public class LodingPresenter implements ILoginPresenter{
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
+                        iLoginView.disimissProgress();
                         iLoginView.loadDataError(throwable.toString());
                         Log.w(TAG, throwable);
                     }

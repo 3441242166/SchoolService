@@ -12,8 +12,5 @@
         android:id="@+id/main_menu_bbs"
         android:icon="@drawable/mainicon_2"
         android:title="论坛" />
-    <item
-        android:id="@+id/main_menu_user"
-        android:icon="@drawable/mainicon_3"
-        android:title="个人" />
+
 </menu>
