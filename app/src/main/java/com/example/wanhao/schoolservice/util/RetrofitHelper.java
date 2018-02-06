@@ -1,6 +1,6 @@
 package com.example.wanhao.schoolservice.util;
 
-import com.example.wanhao.schoolservice.config.ApiConstant;
+import com.example.wanhao.schoolservice.config.ApiConfig;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -67,7 +67,7 @@ public class RetrofitHelper {
                 .retryOnConnectionFailure(true)
                 .connectTimeout(10, TimeUnit.SECONDS);
 
-        return new Retrofit.Builder().baseUrl(ApiConstant.BASE_URL)
+        return new Retrofit.Builder().baseUrl(ApiConfig.BASE_URL)
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

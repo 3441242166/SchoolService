@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         viewPager.setAdapter(adapter);
-        //viewPager.setOffscreenPageLimit(2);
+        viewPager.setOffscreenPageLimit(2);
 
     }
 

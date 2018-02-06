@@ -1,5 +1,6 @@
 package com.example.wanhao.schoolservice.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,17 +8,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.wanhao.schoolservice.R;
-import com.example.wanhao.schoolservice.bean.MessageImage;
-import com.example.wanhao.schoolservice.bean.MessageNormal;
-import com.example.wanhao.schoolservice.bean.RecycleViewItemData;
+import com.example.wanhao.schoolservice.bean.Message;
+import com.example.wanhao.schoolservice.config.Constant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static com.example.wanhao.schoolservice.config.Constant.AD_MESSAGE;
-import static com.example.wanhao.schoolservice.config.Constant.AD_MESSAGE_IMAGE;
+
 
 /**
  * Created by wanhao on 2017/11/26.
@@ -26,16 +27,19 @@ import static com.example.wanhao.schoolservice.config.Constant.AD_MESSAGE_IMAGE;
 public class MessageItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
     private static final String TAG = "MessageItemAdapter";
 
-    private List<RecycleViewItemData> list;
+    private List<Message> list;
     private OnItemClickListener mOnItemClickListener = null;
     View view;
+    Context context;
 
-    public MessageItemAdapter(List<RecycleViewItemData> list) {
-        this.list = list;
+    public MessageItemAdapter(Context context){
+        list = new ArrayList<>();
+        this.context = context;
     }
 
-    public void setData(List<RecycleViewItemData> list) {
+    public void setData(List<Message> list) {
         this.list = list;
+        this.notifyDataSetChanged();
     }
 
     public interface OnItemClickListener {
@@ -43,44 +47,44 @@ public class MessageItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        if(viewType==AD_MESSAGE){
-            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_news, viewGroup, false);
-            HolderNormal vh = new HolderNormal(view);
-            view.setOnClickListener(this);
-            return vh;
-        }
-        if(viewType==AD_MESSAGE_IMAGE){
+        if(viewType== Constant.AD_MESSAGE_IMAGE){
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_news_image, viewGroup, false);
             HolderImage vh = new HolderImage(view);
             view.setOnClickListener(this);
             return vh;
         }
+        if(viewType==Constant.AD_MESSAGE){
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_news, viewGroup, false);
+            HolderNormal vh = new HolderNormal(view);
+            view.setOnClickListener(this);
+            return vh;
+        }
         return null;
     }
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof HolderNormal) {
-            MessageNormal message =(MessageNormal) list.get(position).getT();
+        if(holder instanceof HolderImage){
+            Message message =list.get(position);
 
-            ((HolderNormal) holder).head.setImageDrawable(message.getSendUser().getHead());
-            ((HolderNormal) holder).name.setText(message.getSendUser().getName());
-            ((HolderNormal) holder).messageTitle.setText(message.getTitle());
-            ((HolderNormal) holder).messageContant.setText(message.getContant().get(0));
+            ((HolderImage)holder).name.setText(message.getUser());
+            ((HolderImage)holder).time.setText(message.getTime());
+            ((HolderImage)holder).title.setText(message.getTitle());
+            Glide.with(context).load(message.getImageUrl()).into(((HolderImage)holder).image);
         }
-        if (holder instanceof HolderImage) {
-            MessageImage message =(MessageImage) list.get(position).getT();
+        if(holder instanceof HolderNormal){
+            Message message =list.get(position);
 
-            ((HolderImage) holder).head.setImageDrawable(message.getSendUser().getHead());
-            ((HolderImage) holder).name.setText(message.getSendUser().getName());
-            ((HolderImage) holder).messageTitle.setText(message.getTitle());
-            ((HolderImage) holder).messageContant.setText(message.getContant().get(0));
-            ((HolderImage) holder).image.setImageDrawable(message.getImage());
+            ((HolderNormal)holder).title.setText(message.getTitle());
+            ((HolderNormal)holder).name.setText(message.getUser());
+            ((HolderNormal)holder).time.setText(message.getTime());
         }
         holder.itemView.setTag(position);
     }
+
     @Override
     public int getItemViewType (int position) {
-        return list.get(position).getDataType();
+        return list.get(position).getType();
     }
     @Override
     public void onClick(View v) {
@@ -96,19 +100,22 @@ public class MessageItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public int getItemCount() {
         return list.size();
     }
+
     //自定义的ViewHolder，持有每个Item的的所有界面元素
     public static class HolderNormal extends RecyclerView.ViewHolder {
         public CircleImageView head;
+        public TextView time;
         public TextView name;
-        public TextView messageTitle;
-        public TextView messageContant;
+        public TextView title;
+        public TextView contant;
 
         public HolderNormal(View view) {
             super(view);
+            time = (TextView) view.findViewById(R.id.ad_message_time);
             head = (CircleImageView) view.findViewById(R.id.ad_message_head);
             name = (TextView) view.findViewById(R.id.ad_message_name);
-            messageTitle = (TextView) view.findViewById(R.id.ad_message_title);
-            messageContant = (TextView) view.findViewById(R.id.ad_message_contant);
+            title = (TextView) view.findViewById(R.id.ad_message_title);
+            contant = (TextView) view.findViewById(R.id.ad_message_contant);
 
         }
     }
@@ -116,16 +123,18 @@ public class MessageItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public static class HolderImage extends RecyclerView.ViewHolder {
         public CircleImageView head;
         public TextView name;
-        public TextView messageTitle;
-        public TextView messageContant;
+        public TextView time;
+        public TextView title;
+        public TextView contant;
         public ImageView image;
 
         public HolderImage(View view) {
             super(view);
+            time = (TextView) view.findViewById(R.id.ad_message_image_time);
             head = (CircleImageView) view.findViewById(R.id.ad_message_image_head);
             name = (TextView) view.findViewById(R.id.ad_message_image_name);
-            messageTitle = (TextView) view.findViewById(R.id.ad_message_image_title);
-            messageContant = (TextView) view.findViewById(R.id.ad_message_image_contant);
+            title = (TextView) view.findViewById(R.id.ad_message_image_title);
+            contant = (TextView) view.findViewById(R.id.ad_message_image_contant);
             image = (ImageView) view.findViewById(R.id.ad_message_image_image);
         }
     }

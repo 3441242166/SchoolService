@@ -5,8 +5,11 @@ package com.example.wanhao.schoolservice.bean;
  */
 
 public class HttpResult<T> {
-    private String code;
-    private String msg;
+
+    String code;
+
+    String msg;
+
     private T data;
 
     public String getCode() {
