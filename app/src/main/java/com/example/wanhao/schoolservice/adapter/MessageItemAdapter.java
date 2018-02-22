@@ -24,11 +24,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by wanhao on 2017/11/26.
  */
 
-public class MessageItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
+public class MessageItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener,View.OnLongClickListener{
     private static final String TAG = "MessageItemAdapter";
 
     private List<Message> list;
     private OnItemClickListener mOnItemClickListener = null;
+    private OnLongItemClickListener mOnLongItemClickListener = null;
     View view;
     Context context;
 
@@ -40,6 +41,10 @@ public class MessageItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void setData(List<Message> list) {
         this.list = list;
         this.notifyDataSetChanged();
+    }
+
+    public interface OnLongItemClickListener {
+        void onLongItemClick(View view, int position);
     }
 
     public interface OnItemClickListener {
@@ -69,6 +74,7 @@ public class MessageItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             ((HolderImage)holder).name.setText(message.getUser());
             ((HolderImage)holder).time.setText(message.getTime());
+            ((HolderImage)holder).contant.setText(message.getContantUrl());
             ((HolderImage)holder).title.setText(message.getTitle());
             Glide.with(context).load(message.getImageUrl()).into(((HolderImage)holder).image);
         }
@@ -78,6 +84,7 @@ public class MessageItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ((HolderNormal)holder).title.setText(message.getTitle());
             ((HolderNormal)holder).name.setText(message.getUser());
             ((HolderNormal)holder).time.setText(message.getTime());
+            ((HolderNormal)holder).contant.setText(message.getContantUrl());
         }
         holder.itemView.setTag(position);
     }
@@ -93,9 +100,22 @@ public class MessageItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
+    @Override
+    public boolean onLongClick(View v) {
+        if (mOnLongItemClickListener != null) {
+            mOnLongItemClickListener.onLongItemClick(v, (int) v.getTag());
+        }
+        return true;
+    }
+
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.mOnItemClickListener = listener;
     }
+
+    public void setOnLongItemClickListener(OnLongItemClickListener listener) {
+        this.mOnLongItemClickListener = listener;
+    }
+
     @Override
     public int getItemCount() {
         return list.size();

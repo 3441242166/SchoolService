@@ -3,23 +3,23 @@
     <group>
         <item
             android:id="@+id/main_drawer_message"
-            android:icon="@drawable/usericon_0"
+            android:icon="@drawable/draw_icon_message"
             android:title="消息中心" />
         <item
             android:id="@+id/main_drawer_collect"
-            android:icon="@drawable/usericon_1"
+            android:icon="@drawable/draw_icon_collect"
             android:title="我的收藏" />
         <item
             android:id="@+id/main_drawer_care"
-            android:icon="@drawable/usericon_2"
+            android:icon="@drawable/draw_icon_care"
             android:title="我的关注" />
         <item
             android:id="@+id/main_drawer_money"
-            android:icon="@drawable/usericon_3"
+            android:icon="@drawable/draw_icon_money"
             android:title="积分中心" />
         <item
             android:id="@+id/main_drawer_leaveword"
-            android:icon="@drawable/usericon_4"
+            android:icon="@drawable/draw_icon_leave"
             android:title="留言板" />
     </group>
 
@@ -27,11 +27,11 @@
         <menu>
             <item
                 android:id="@+id/main_drawer_set"
-                android:icon="@drawable/usericon_5"
+                android:icon="@drawable/draw_icon_setting"
                 android:title="设置" />
             <item
                 android:id="@+id/main_drawer_exit"
-                android:icon="@drawable/usericon_6"
+                android:icon="@drawable/draw_icon_exit"
                 android:title="退出登录" />
         </menu>
     </item>

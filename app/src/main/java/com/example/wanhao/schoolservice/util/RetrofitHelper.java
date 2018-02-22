@@ -63,9 +63,9 @@ public class RetrofitHelper {
 
     public static <T> T get(Class<T> tClass) {
         OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
-        builder.readTimeout(12, TimeUnit.SECONDS)
+        builder.retryOnConnectionFailure(true)
                 .retryOnConnectionFailure(true)
-                .connectTimeout(10, TimeUnit.SECONDS);
+                .connectTimeout(5, TimeUnit.SECONDS);
 
         return new Retrofit.Builder().baseUrl(ApiConfig.BASE_URL)
                 .client(builder.build())

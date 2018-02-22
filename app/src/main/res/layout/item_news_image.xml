@@ -62,17 +62,18 @@
             <TextView
                 android:id="@+id/ad_message_image_contant"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="5dp"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:maxLines="3"
                 android:text='ACM程序设计大赛是大学级别最高的脑力竞赛，素来被冠以"程序设计的奥林匹克"的尊称。大赛至今已有近40年的历史，是世界范围内历史最悠久、规模最大的程序设计竞赛。比赛形式是：从各大洲区域预赛出线的参赛队伍，于指定的时间、地点参加世界级的决赛，由1个教练、3个成员组成的小组应用一台计算机解决7到13个生活中的实际问题。'
                 android:textSize="14sp" />
 
             <ImageView
+                android:layout_marginRight="5dp"
                 android:id="@+id/ad_message_image_image"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/ceshi_head" />
         </LinearLayout>
