@@ -16,9 +16,9 @@ import android.widget.Toast;
 
 import com.example.wanhao.schoolservice.R;
 import com.example.wanhao.schoolservice.customizeview.NoScrollViewPager;
-import com.example.wanhao.schoolservice.fragment.BBSFagment;
 import com.example.wanhao.schoolservice.fragment.MainFragment;
 import com.example.wanhao.schoolservice.fragment.MessageFragment;
+import com.example.wanhao.schoolservice.fragment.OtherFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
 
     private MessageFragment messageFragment;
-    private BBSFagment BBSFagment;
+    private OtherFragment otherFragment;
     private MainFragment mainFragment;
     private List<Fragment> fragmentList;
     private FragmentPagerAdapter adapter;
@@ -112,11 +112,11 @@ public class MainActivity extends AppCompatActivity {
         fragmentList = new ArrayList<>();
         mainFragment = new MainFragment();
         messageFragment = new MessageFragment();
-        BBSFagment = new BBSFagment();
+        otherFragment = new OtherFragment();
 
         fragmentList.add(mainFragment);
         fragmentList.add(messageFragment);
-        fragmentList.add(BBSFagment);
+        fragmentList.add(otherFragment);
 
 
         adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {

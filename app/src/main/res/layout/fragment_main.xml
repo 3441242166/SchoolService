@@ -1,37 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/fg_main_appbar"
-        android:layout_width="match_parent"
-        android:layout_height="220dp">
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/fg_main_toolbar">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/fg_main_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"/>
-
-            <com.youth.banner.Banner
-                android:id="@+id/fg_main_banner"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:elevation="5dp" />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.v4.widget.NestedScrollView
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
@@ -42,11 +18,18 @@
             android:orientation="vertical"
             android:weightSum="1">
 
+            <com.youth.banner.Banner
+                android:id="@+id/fg_main_banner"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:elevation="5dp">
+
+            </com.youth.banner.Banner>
 
             <LinearLayout
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <Button
@@ -131,14 +114,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:text="-  猜你喜欢  -"
+                android:text="-  问卷调查  -"
                 android:textSize="14sp" />
 
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/fg_main_voterecycle"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_margin="10dp"
-                android:background="#c5c5c5" />
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp" />
 
             <View
                 android:layout_width="match_parent"
@@ -180,4 +163,4 @@
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

@@ -1,11 +1,14 @@
 package com.example.wanhao.schoolservice.fragment;
 
-import android.support.design.widget.AppBarLayout;
-import android.view.View;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.example.wanhao.schoolservice.R;
+import com.example.wanhao.schoolservice.adapter.VoteAdapter;
 import com.example.wanhao.schoolservice.base.LazyLoadFragment;
+import com.example.wanhao.schoolservice.bean.Vote;
 import com.example.wanhao.schoolservice.util.ImageLoader;
+import com.example.wanhao.schoolservice.util.PagingScrollHelper;
 import com.youth.banner.Banner;
 
 import java.util.ArrayList;
@@ -18,15 +21,9 @@ import java.util.List;
 public class MainFragment extends LazyLoadFragment {
 
     private Banner banner;
-    private AppBarLayout barLayout;
 
-    private CollapsingToolbarLayoutState state;
-
-    private enum CollapsingToolbarLayoutState {
-        EXPANDED,
-        COLLAPSED,
-        INTERNEDIATE
-    }
+    private RecyclerView voteRecycler;
+    private VoteAdapter voteAdapter;
 
     @Override
     protected int setContentView() {
@@ -35,8 +32,34 @@ public class MainFragment extends LazyLoadFragment {
 
     @Override
     protected void lazyLoad() {
+
+        initView();
+        initEvent();
+    }
+
+    private void initView() {
         banner = findViewById(R.id.fg_main_banner);
-        barLayout = findViewById(R.id.fg_main_appbar);
+        voteRecycler = findViewById(R.id.fg_main_voterecycle);
+        voteRecycler.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
+        new PagingScrollHelper().setUpRecycleView(voteRecycler);
+        voteAdapter = new VoteAdapter(getActivity());
+        voteRecycler.setAdapter(voteAdapter);
+
+
+
+        List<Vote> documents = new ArrayList<>();
+        for(int x=0;x<5;x++){
+            Vote document = new Vote();
+            document.setTitle("你有被噩梦而惊醒的经历吗？");
+            document.setRed(23);
+            document.setBlue(77);
+            document.setRedString("有过");
+            document.setBlueString("没有过");
+            document.setParticipant(6481);
+            documents.add(document);
+        }
+
+        voteAdapter.setData(documents);
 
         //设置图片加载器
         banner.setImageLoader(new ImageLoader());
@@ -51,34 +74,10 @@ public class MainFragment extends LazyLoadFragment {
         banner.setImages(list);
         //banner设置方法全部调用完毕时最后调用
         banner.start();
-        initEvent();
     }
 
     private void initEvent() {
-        barLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (verticalOffset == 0) {
-                    if (state != CollapsingToolbarLayoutState.EXPANDED) {
-                        state = CollapsingToolbarLayoutState.EXPANDED;//修改状态标记为展开
-                    }
-                    banner.setAlpha(1);
-                } else if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
-                    if (state != CollapsingToolbarLayoutState.COLLAPSED) {
-                        banner.setVisibility(View.GONE);
-                        state = CollapsingToolbarLayoutState.COLLAPSED;//修改状态标记为折叠
-                    }
-                } else {
-                    if (state != CollapsingToolbarLayoutState.INTERNEDIATE) {
-                        if(state == CollapsingToolbarLayoutState.COLLAPSED){
-                            banner.setVisibility(View.VISIBLE);
-                        }
-                        state = CollapsingToolbarLayoutState.INTERNEDIATE;//修改状态标记为中间
-                    }
-                    banner.setAlpha((1-(float)Math.abs(verticalOffset)/(float)appBarLayout.getTotalScrollRange()));
-                }
-            }
-        });
+
     }
 
 
