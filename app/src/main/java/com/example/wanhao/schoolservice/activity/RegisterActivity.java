@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -17,18 +16,24 @@ import com.example.wanhao.schoolservice.R;
 import com.example.wanhao.schoolservice.presenter.RegisterPresenter;
 import com.example.wanhao.schoolservice.view.IRegisterView;
 
+import butterknife.BindView;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener,IRegisterView{
     private static final String TAG = "RegisterActivity";
 
+    @BindView(R.id.ac_register_loding)
     Button btGo;
+    @BindView(R.id.ac_register_fab)
     FloatingActionButton fab;
+    @BindView(R.id.ac_register_count)
     EditText etUsername;
+    @BindView(R.id.ac_register_password)
     EditText etPassword;
+    @BindView(R.id.ac_register_code)
     EditText etCode;
+    @BindView(R.id.ac_register_getcode)
     TextView tvCode;
-    CardView cardView;
 
     RegisterPresenter registerPresenter;
 
@@ -56,13 +61,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void InitView() {
-        etPassword = (EditText) findViewById(R.id.ac_register_password);
-        etUsername = (EditText) findViewById(R.id.ac_register_count);
-        etCode = (EditText) findViewById(R.id.ac_register_code);
-        tvCode = (TextView) findViewById(R.id.ac_register_getcode);
-        btGo = (Button) findViewById(R.id.ac_register_loding);
-        fab = (FloatingActionButton) findViewById(R.id.ac_register_fab);
-        cardView = (CardView) findViewById(R.id.ac_register_cardview);
 
         registerPresenter = new RegisterPresenter(this,this);
 

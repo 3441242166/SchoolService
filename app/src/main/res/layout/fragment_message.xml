@@ -1,132 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
-        android:background="@color/writeText"
-        android:id="@+id/fg_main_appbar"
+    <LinearLayout
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="220dp">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <android.support.design.widget.CollapsingToolbarLayout
+        <TextView
+            android:id="@+id/fg_message_search"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/fg_message_toolbar">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_edit_search"
+            android:ems="10"
+            android:hint="     搜索帖子/论坛/用户"
+            android:textSize="14sp" />
+    </LinearLayout>
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/fg_message_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"/>
-
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v7.widget.RecyclerView
+        android:layout_margin="10dp"
+        android:id="@+id/fg_message_icon_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+        android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <TextView
+        android:background="@color/buttonClickColor0"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+    <android.support.design.widget.TabLayout
+        android:id="@+id/fg_message_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-                <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bt_shape"
-                    android:elevation="@dimen/button_elevation"
-                    android:text="一卡通" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/fg_message_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-                <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bt_shape"
-                    android:elevation="@dimen/button_elevation"
-                    android:text="市场" />
-
-                <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bt_shape"
-                    android:elevation="@dimen/button_elevation"
-                    android:text="一卡通" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bt_shape"
-                    android:elevation="@dimen/button_elevation"
-                    android:text="失物招领" />
-
-
-                <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bt_shape"
-                    android:elevation="@dimen/button_elevation"
-                    android:text="表白墙" />
-
-                <Button
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bt_shape"
-                    android:elevation="@dimen/button_elevation"
-                    android:text="失物招领" />
-
-            </LinearLayout>
-
-            <android.support.design.widget.TabLayout
-                android:id="@+id/fg_message_tab"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/fg_message_viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </android.support.v4.view.ViewPager>
-
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
-</android.support.design.widget.CoordinatorLayout>
+    </android.support.v4.view.ViewPager>
+</LinearLayout>

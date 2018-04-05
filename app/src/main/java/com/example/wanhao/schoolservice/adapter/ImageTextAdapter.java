@@ -10,18 +10,19 @@ import com.example.wanhao.schoolservice.bean.GridBean;
 import java.util.List;
 
 /**
- * Created by wanhao on 2018/3/10.
+ * Created by wanhao on 2018/4/4.
  */
 
-public class GridAdapter extends BaseQuickAdapter<GridBean,BaseViewHolder> {
+public class ImageTextAdapter extends BaseQuickAdapter<GridBean,BaseViewHolder> {
 
-    public GridAdapter(int layoutResId, @Nullable List<GridBean> data) {
+    public ImageTextAdapter(int layoutResId, @Nullable List<GridBean> data) {
         super(layoutResId, data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, GridBean item) {
-        helper.setText(R.id.item_grid_text,item.getName());
-        helper.setImageResource(R.id.item_grid_image,item.getImgID());
+        helper.setText(R.id.item_image_text_text,item.getName());
+        helper.setImageResource(R.id.item_image_text_image,item.getImgID());
     }
 }
+

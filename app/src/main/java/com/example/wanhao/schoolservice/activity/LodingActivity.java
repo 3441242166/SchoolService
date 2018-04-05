@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -20,17 +19,23 @@ import com.example.wanhao.schoolservice.R;
 import com.example.wanhao.schoolservice.presenter.LodingPresenter;
 import com.example.wanhao.schoolservice.view.ILodingView;
 
+import butterknife.BindView;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class LodingActivity extends AppCompatActivity implements View.OnClickListener,ILodingView {
     private static final String TAG = "LodingActivity";
 
+    @BindView(R.id.ac_loding_forget)
     TextView forget;
+    @BindView(R.id.ac_loding_loding)
     Button btGo;
+    @BindView(R.id.ac_loding_fab)
     FloatingActionButton fab;
+    @BindView(R.id.ac_loding_count)
     EditText etUsername;
+    @BindView(R.id.ac_loding_password)
     EditText etPassword;
-    CardView cardView;
+
     SweetAlertDialog pDialog;
 
     LodingPresenter presenter;
@@ -70,12 +75,6 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initView() {
-        etPassword = (EditText) findViewById(R.id.ac_loding_password);
-        etUsername = (EditText) findViewById(R.id.ac_loding_count);
-        btGo = (Button) findViewById(R.id.ac_loding_loding);
-        fab = (FloatingActionButton) findViewById(R.id.ac_loding_fab);
-        forget = (TextView) findViewById(R.id.ac_loding_forget);
-        cardView = (CardView) findViewById(R.id.ac_loding_cardview);
 
         pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));

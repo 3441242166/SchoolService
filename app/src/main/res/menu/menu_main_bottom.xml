@@ -13,4 +13,9 @@
         android:icon="@drawable/mainicon_2"
         android:title="论坛" />
 
+    <item
+        android:id="@+id/main_menu_me"
+        android:icon="@drawable/mainicon_3"
+        android:title="我" />
+
 </menu>

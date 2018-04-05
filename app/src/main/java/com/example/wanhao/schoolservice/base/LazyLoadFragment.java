@@ -3,10 +3,12 @@ package com.example.wanhao.schoolservice.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * 懒加载的Fragment
@@ -19,14 +21,16 @@ public abstract class LazyLoadFragment extends Fragment {
     protected boolean isLoad = false;
     protected final String TAG = "LazyLoadFragment";
     private View view;
+    private Unbinder mUnbinder;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(setContentView(), container, false);
+        mUnbinder = ButterKnife.bind(this, view);
         isInit = true;
         /**初始化的时候去加载数据**/
-        isCanLoadData();
+        lazyLoad();
         return view;
     }
 
@@ -36,8 +40,7 @@ public abstract class LazyLoadFragment extends Fragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        Log.i(TAG, "setUserVisibleHint: isCanLoadData");
-        isCanLoadData();
+        //isCanLoadData();
     }
 
     /**
@@ -51,8 +54,7 @@ public abstract class LazyLoadFragment extends Fragment {
             return;
         }
 
-        if (getUserVisibleHint()&&!isLoad) {
-            Log.i(TAG, "isCanLoadData: lazyLoad");
+        if (getUserVisibleHint()) {
             lazyLoad();
             isLoad = true;
         } else {
@@ -112,4 +114,9 @@ public abstract class LazyLoadFragment extends Fragment {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mUnbinder.unbind();
+    }
 }

@@ -1,13 +1,10 @@
 package com.example.wanhao.schoolservice.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -16,24 +13,32 @@ import android.widget.Toast;
 
 import com.example.wanhao.schoolservice.R;
 import com.example.wanhao.schoolservice.customizeview.NoScrollViewPager;
+import com.example.wanhao.schoolservice.fragment.BBSFagment;
 import com.example.wanhao.schoolservice.fragment.MainFragment;
+import com.example.wanhao.schoolservice.fragment.MeFragment;
 import com.example.wanhao.schoolservice.fragment.MessageFragment;
-import com.example.wanhao.schoolservice.fragment.OtherFragment;
+import com.example.wanhao.schoolservice.util.ActivityCollector;
+import com.example.wanhao.schoolservice.util.BottomNavigationViewHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
+    @BindView(R.id.ac_main_bottom)
     BottomNavigationView navigation;
+    @BindView(R.id.ac_main_viewpager)
     NoScrollViewPager viewPager;
-    DrawerLayout drawer;
-    NavigationView navigationView;
 
     private MessageFragment messageFragment;
-    private OtherFragment otherFragment;
+    private BBSFagment bbsFagment;
     private MainFragment mainFragment;
+    private MeFragment meFragment;
+
     private List<Fragment> fragmentList;
     private FragmentPagerAdapter adapter;
 
@@ -44,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
+        ActivityCollector.addActivity(this);
+        ButterKnife.bind(this);
         initView();
         initEvent();
 
@@ -66,58 +72,30 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.main_menu_bbs:
                         viewPager.setCurrentItem(2);
                         return true;
+                    case R.id.main_menu_me:
+                        viewPager.setCurrentItem(3);
+                        return true;
                 }
                 return false;
             }
         });
 
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                drawer.closeDrawers();
-                switch (item.getItemId()){
-                    case R.id.main_drawer_message:
-                        startActivity(new Intent(MainActivity.this, MessageActivity.class));
-                        break;
-                    case R.id.main_drawer_collect:
-                        break;
-                    case R.id.main_drawer_care:
-                        startActivity(new Intent(MainActivity.this, CareActivity.class));
-                        break;
-                    case R.id.main_drawer_leaveword:
-                        break;
-                    case R.id.main_drawer_exit:
-                        startActivity(new Intent(MainActivity.this, LodingActivity.class));
-                        break;
-                    case R.id.main_drawer_set:
-                        startActivity(new Intent(MainActivity.this, SettingActivity.class));
-                        break;
-                    case R.id.main_drawer_money:
-                        break;
-                }
-                return true;
-            }
-        });
 
     }
 
     private void initView() {
 
-        navigationView =(NavigationView) findViewById(R.id.ac_main_nav);
-        navigation = (BottomNavigationView)findViewById(R.id.ac_main_bottom);
-        viewPager = (NoScrollViewPager) findViewById(R.id.ac_main_viewpager);
-        drawer = (DrawerLayout) findViewById(R.id.ac_main_draw);
-
         fragmentList = new ArrayList<>();
         mainFragment = new MainFragment();
         messageFragment = new MessageFragment();
-        otherFragment = new OtherFragment();
+        bbsFagment = new BBSFagment();
+        meFragment = new MeFragment();
 
         fragmentList.add(mainFragment);
         fragmentList.add(messageFragment);
-        fragmentList.add(otherFragment);
-
+        fragmentList.add(bbsFagment);
+        fragmentList.add(meFragment);
 
         adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -130,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         viewPager.setAdapter(adapter);
-        viewPager.setOffscreenPageLimit(2);
-
+        viewPager.setOffscreenPageLimit(5);
+        BottomNavigationViewHelper.disableShiftMode(navigation);
     }
 
     @Override

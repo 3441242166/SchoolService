@@ -5,10 +5,10 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
-        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
+        android:fitsSystemWindows="true"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
@@ -16,48 +16,68 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="西安科技大学"
+            android:text="我的论坛"
             android:textColor="@color/writeText"
             android:textSize="18sp" />
 
     </android.support.v7.widget.Toolbar>
 
-    <RelativeLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-            <android.support.design.widget.TabLayout
-                android:id="@+id/fg_bbs_tab"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/fg_bbs_pager"
+            <TextView
+                android:id="@+id/fg_bbs_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/fg_bbs_tab">
+                android:layout_margin="10dp"
+                android:background="@drawable/shape_edit_search"
+                android:ems="10"
+                android:hint="     搜索帖子/论坛/用户"
+                android:textSize="14sp" />
 
-            </android.support.v4.view.ViewPager>
+            <RelativeLayout
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Button">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="编辑"
+                    android:textColor="@color/blue_btn_bg_color"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:gravity=""
+                    android:text="我关注的论坛"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:background="@color/buttonClickColor0"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/fg_bbs_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="20dp"
-            android:clickable="true"
-            android:elevation="10dp"
-            app:backgroundTint="@color/cardview_light_background"
-            app:fabSize="mini"
-            app:srcCompat="@drawable/plus" />
 
-    </RelativeLayout>
 
 </LinearLayout>

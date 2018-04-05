@@ -1,15 +1,19 @@
 package com.example.wanhao.schoolservice.fragment;
 
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.widget.TextView;
 
 import com.example.wanhao.schoolservice.R;
+import com.example.wanhao.schoolservice.adapter.BBSItemAdapter;
 import com.example.wanhao.schoolservice.base.LazyLoadFragment;
+import com.example.wanhao.schoolservice.bean.BBSItem;
+import com.example.wanhao.schoolservice.util.MyItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * Created by wanhao on 2017/11/18.
@@ -18,12 +22,13 @@ import java.util.List;
 public class BBSFagment extends LazyLoadFragment {
     private static final String TAG = "BBSFagment";
 
-    ViewPager viewPager;
-    TabLayout tabLayout;
-    List<Fragment> fragmentList;
-    FragmentPagerAdapter adapter;
-    BBSEntertainFragment fgHot;
-    StudyBBSFragment studyBBSFragment;
+    @BindView(R.id.fg_bbs_recycler)
+    RecyclerView recyclerView;
+    @BindView(R.id.fg_bbs_search)
+    TextView btSearch;
+
+    private BBSItemAdapter adapter;
+    private List<BBSItem> list;
 
     @Override
     protected int setContentView() {
@@ -37,35 +42,23 @@ public class BBSFagment extends LazyLoadFragment {
     }
 
     private void initView() {
-        viewPager =  findViewById(R.id.fg_bbs_pager);
-        tabLayout =  findViewById(R.id.fg_bbs_tab);
 
-        fragmentList = new ArrayList<>();
-        fgHot = new BBSEntertainFragment();
-        studyBBSFragment = new StudyBBSFragment();
-        fragmentList.add(fgHot);
-        fragmentList.add(studyBBSFragment);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
+        recyclerView.addItemDecoration(new MyItemDecoration());
 
-        final List<String> title = new ArrayList<>();
-        title.add("娱乐");
-        title.add("学习交流");
-        adapter = new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
-            @Override
-            public int getCount() {
-                return fragmentList.size();
-            }
+        list = new ArrayList<>();
+        BBSItem item = new BBSItem();
+        for(int x=0;x<10;x++){
+            item = new BBSItem();
+            item.setImgID(R.drawable.ceshi_head);
+            item.setTitle("西安科技大学");
+            item.setContent("什么都没有呢");
+            list.add(item);
+        }
 
-            @Override
-            public Fragment getItem(int position) {
-                return fragmentList.get(position);
-            }
-            @Override
-            public CharSequence getPageTitle(int position) {
-                return title.get(position);
-            }
-        };
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
+        adapter = new BBSItemAdapter(R.layout.item_bbs,list);
+        recyclerView.setAdapter(adapter);
+
     }
 
 
