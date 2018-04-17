@@ -75,9 +75,9 @@ public class MeFragment extends LazyLoadFragment {
     }
 
     private void initEvent() {
-        adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Log.i(TAG, "onItemChildClick: position = "+ position);
                 switch (position){
                     case 0:
@@ -96,7 +96,7 @@ public class MeFragment extends LazyLoadFragment {
                         break;
 
                 }
-            }
-        });
+        }
+    });
     }
 }

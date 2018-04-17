@@ -20,13 +20,14 @@ import com.example.wanhao.schoolservice.presenter.LodingPresenter;
 import com.example.wanhao.schoolservice.view.ILodingView;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class LodingActivity extends AppCompatActivity implements View.OnClickListener,ILodingView {
     private static final String TAG = "LodingActivity";
 
     @BindView(R.id.ac_loding_forget)
-    TextView forget;
+    TextView btForget;
     @BindView(R.id.ac_loding_loding)
     Button btGo;
     @BindView(R.id.ac_loding_fab)
@@ -43,13 +44,14 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
         setContentView(R.layout.activity_loding);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         initView();
 
         fab.setOnClickListener(this);
         btGo.setOnClickListener(this);
-        forget.setOnClickListener(this);
+        btForget.setOnClickListener(this);
     }
 
     @Override

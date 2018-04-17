@@ -27,7 +27,7 @@
             </com.youth.banner.Banner>
 
             <android.support.v7.widget.RecyclerView
-                android:layout_marginTop="10dp"
+                android:layout_margin="10dp"
                 android:id="@+id/fg_main_icon_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -36,6 +36,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:background="@color/itemColor" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="50dp"
+                android:clickable="true"
+                android:src="@drawable/plus"
+                app:fabSize="normal" />
+
+            <TextView
+                android:textColor="#f25148"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="添加卡片" />
+
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

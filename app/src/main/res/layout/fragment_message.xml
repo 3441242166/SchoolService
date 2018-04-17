@@ -21,7 +21,7 @@
             android:layout_weight="1"
             android:background="@drawable/shape_edit_search"
             android:ems="10"
-            android:hint="     搜索帖子/论坛/用户"
+            android:hint="     搜索科目/公众号/关键词"
             android:textSize="14sp" />
     </LinearLayout>
 
