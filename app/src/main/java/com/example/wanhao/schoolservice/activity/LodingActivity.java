@@ -21,7 +21,6 @@ import com.example.wanhao.schoolservice.view.ILodingView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class LodingActivity extends AppCompatActivity implements View.OnClickListener,ILodingView {
     private static final String TAG = "LodingActivity";
@@ -37,15 +36,13 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
     @BindView(R.id.ac_loding_password)
     EditText etPassword;
 
-    SweetAlertDialog pDialog;
-
     LodingPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
         setContentView(R.layout.activity_loding);
+        ButterKnife.bind(this);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         initView();
 
@@ -67,6 +64,7 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
                         fab, fab.getTransitionName()).toBundle());
                 break;
             case R.id.ac_loding_loding:
+                startActivity(new Intent(this,MainActivity.class));
                 hideKeyboard();
                 presenter.login(etUsername.getText().toString(),etPassword.getText().toString());
                 break;
@@ -78,10 +76,6 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
 
     private void initView() {
 
-        pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-        pDialog.setTitleText("Loading");
-        pDialog.setCancelable(false);
 
         presenter = new LodingPresenter(this,this);
     }
@@ -93,24 +87,24 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void showProgress() {
-        pDialog.show();
+
     }
 
     @Override
     public void disimissProgress() {
-        pDialog.hide();
+
     }
 
     @Override
     public void loadDataSuccess(Object tData) {
         startActivity(new Intent(this, MainActivity.class));
-        pDialog.hide();
+
     }
 
     @Override
     public void loadDataError(String throwable) {
         Toast.makeText(this,throwable,Toast.LENGTH_SHORT).show();
-        pDialog.hide();
+
     }
 
     private void hideKeyboard() {

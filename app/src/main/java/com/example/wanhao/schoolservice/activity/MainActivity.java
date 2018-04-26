@@ -1,5 +1,7 @@
 package com.example.wanhao.schoolservice.activity;
 
+import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -53,15 +55,17 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initView();
         initEvent();
-
+        navigation.setSelectedItemId(0);
     }
 
     private void initEvent() {
         viewPager.setNoScroll(true);
         viewPager.setOverScrollMode(viewPager.OVER_SCROLL_NEVER);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                 switch (item.getItemId()) {
                     case R.id.main_menu_home:
                         viewPager.setCurrentItem(0);
@@ -79,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
 
 
     }
@@ -108,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         viewPager.setAdapter(adapter);
-        viewPager.setOffscreenPageLimit(5);
+        viewPager.setOffscreenPageLimit(4);
         BottomNavigationViewHelper.disableShiftMode(navigation);
     }
 

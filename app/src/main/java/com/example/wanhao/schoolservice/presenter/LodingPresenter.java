@@ -7,11 +7,14 @@ import android.util.Log;
 import com.example.wanhao.schoolservice.bean.HttpResult;
 import com.example.wanhao.schoolservice.config.ApiConstant;
 import com.example.wanhao.schoolservice.config.Constant;
-import com.example.wanhao.schoolservice.service.LodingService;
+import com.example.wanhao.schoolservice.service.LodingRegisterService;
+import com.example.wanhao.schoolservice.util.JsonUtil;
 import com.example.wanhao.schoolservice.util.RetrofitHelper;
 import com.example.wanhao.schoolservice.util.SaveDataUtil;
 import com.example.wanhao.schoolservice.view.ILodingView;
 import com.google.gson.Gson;
+
+import java.util.HashMap;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -45,10 +48,15 @@ public class LodingPresenter implements ILoginPresenter{
             iLoginView.loadDataError("密码不能为空");
             return;
         }
+        HashMap<String,String> hashMap = new HashMap<>();
+        hashMap.put(ApiConstant.LODING_COUNT,phoneNum);
+        hashMap.put(ApiConstant.LODING_PASSWORD,password);
+
         //开始向服务器请求
         iLoginView.showProgress();
-        LodingService service = RetrofitHelper.get(LodingService.class);
-        service.loding(phoneNum,password)
+        LodingRegisterService service = RetrofitHelper.get(LodingRegisterService.class);
+
+        service.loding(JsonUtil.getJsonBody(hashMap))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Response<ResponseBody>>() {

@@ -1,36 +1,28 @@
 package com.example.wanhao.schoolservice.activity;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.WindowManager;
-import android.widget.ImageView;
+import android.os.Bundle;
 
 import com.example.wanhao.schoolservice.R;
+import com.example.wanhao.schoolservice.base.TopBarBaseActivity;
 
-public class UserMessageActivity extends AppCompatActivity{
+public class UserMessageActivity extends TopBarBaseActivity {
 
-    private ImageView headView;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_message);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        init();
+    protected int getContentView() {
+        return R.layout.activity_user_message;
     }
 
-
-
-    private void init() {
-        initView();
-        initEvent();
-    }
-
-    private void initView() {
-        headView = (ImageView) findViewById(R.id.ac_user_head);
-    }
-
-    private void initEvent() {
-
+    @Override
+    protected void init(Bundle savedInstanceState) {
+        setTitle("个人信息");
+        setTopLeftButton(new OnClickListener() {
+            @Override
+            public void onClick() {
+                finish();
+            }
+        });
     }
 }

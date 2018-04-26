@@ -17,7 +17,7 @@ import com.yalantis.phoenix.PullToRefreshView;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
+
 
 /**
  * Created by wanhao on 2018/2/6.
@@ -90,19 +90,7 @@ public class ListFragment extends LazyLoadFragment implements IBaseView<List<Mes
             @Override
             public void onLongItemClick(View view, int position) {
                 Toast.makeText(getActivity(),messageList.get(position).getTime(),Toast.LENGTH_SHORT).show();
-                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Are you sure?")
-                        .setContentText("Won't be able to recover this file!")
-                        .setCancelText("No,cancel plx!")
-                        .setConfirmText("Yes,delete it!")
-                        .showCancelButton(true)
-                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog) {
-                                sDialog.cancel();
-                            }
-                        })
-                        .show();
+
             }
         });
     }

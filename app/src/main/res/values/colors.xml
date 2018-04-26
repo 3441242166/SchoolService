@@ -13,9 +13,16 @@
 
 
     <color name="buttonColor0">#f7fafc</color>
-    <color name="buttonClickColor0">#e7e7e7</color>
+    <color name="split_color">#e7e7e7</color>
     <color name="buttonColor1">#870078c7</color>
     <color name="buttonClickColor1">#ae004d80</color>
 
     <color name="colorToumin">#7d000000</color>
+
+    <!--<color name="bottom_1">#365264</color>-->
+    <color name="bottom_click">#00988c</color>
+    <color name="bottom_normal">#5d5d5d</color>
+    <!--<color name="bottom_3">#aa8463</color>-->
+    <!--<color name="bottom_4">#8a5f37</color>-->
+
 </resources>

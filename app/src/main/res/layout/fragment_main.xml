@@ -45,7 +45,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="50dp"
                 android:clickable="true"
-                android:src="@drawable/plus"
+                android:src="@drawable/icon_add"
                 app:fabSize="normal" />
 
             <TextView

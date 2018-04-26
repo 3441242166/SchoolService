@@ -67,7 +67,7 @@ public class RetrofitHelper {
                 .retryOnConnectionFailure(true)
                 .connectTimeout(5, TimeUnit.SECONDS);
 
-        return new Retrofit.Builder().baseUrl(ApiConfig.BASE_URL)
+        return new Retrofit.Builder().baseUrl(ApiConfig.BASE_API_URL)
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

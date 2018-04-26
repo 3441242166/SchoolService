@@ -10,6 +10,7 @@ import java.lang.reflect.Field;
 
 /**
  * Created by wanhao on 2018/4/3.
+ * 防止bottom变形
  */
 
 public class BottomNavigationViewHelper {

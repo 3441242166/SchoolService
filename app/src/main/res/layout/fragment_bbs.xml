@@ -22,62 +22,24 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <android.support.v4.widget.NestedScrollView
+    <TextView
+        android:id="@+id/fg_bbs_search"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_search"
+        android:ems="10"
+        android:hint="     搜索帖子/论坛/用户"
+        android:textSize="14sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+    <TextView
+        android:background="@color/split_color"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
 
-            <TextView
-                android:id="@+id/fg_bbs_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/shape_edit_search"
-                android:ems="10"
-                android:hint="     搜索帖子/论坛/用户"
-                android:textSize="14sp" />
-
-            <RelativeLayout
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:text="编辑"
-                    android:textColor="#2fc2fc"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:gravity=""
-                    android:text="我关注的论坛"
-                    android:textSize="14sp" />
-            </RelativeLayout>
-
-            <TextView
-                android:background="@color/buttonClickColor0"
-                android:layout_width="match_parent"
-                android:layout_height="1dp" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/fg_bbs_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fg_bbs_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

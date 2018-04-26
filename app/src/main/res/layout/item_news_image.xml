@@ -23,7 +23,7 @@
                 android:layout_gravity="left"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:src="@drawable/ceshi_head" />
+                android:src="@drawable/head" />
 
             <TextView
 
@@ -75,7 +75,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ceshi_head" />
+                app:srcCompat="@drawable/head" />
         </LinearLayout>
 
         <LinearLayout

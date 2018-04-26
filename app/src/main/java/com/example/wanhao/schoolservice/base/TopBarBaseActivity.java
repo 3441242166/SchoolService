@@ -35,8 +35,6 @@ public abstract class TopBarBaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
-
         setContentView(R.layout.activity_base_top_bar);
 
         toolbar = (Toolbar) findViewById(R.id.id_toolbar);
@@ -50,10 +48,17 @@ public abstract class TopBarBaseActivity extends AppCompatActivity {
         //将继承 TopBarBaseActivity 的布局解析到 FrameLayout 里面
         LayoutInflater.from(TopBarBaseActivity.this).inflate(getContentView(), viewContent);
 
+        ButterKnife.bind(this);
         init(savedInstanceState);
     }
 
     protected void setTitle(String title){
+        if (!TextUtils.isEmpty(title)){
+            tvTitle.setText(title);
+        }
+    }
+
+    protected void setTitleColor(String title){
         if (!TextUtils.isEmpty(title)){
             tvTitle.setText(title);
         }

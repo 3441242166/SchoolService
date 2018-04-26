@@ -1,16 +1,19 @@
 package com.example.wanhao.schoolservice.fragment;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.wanhao.schoolservice.R;
+import com.example.wanhao.schoolservice.activity.OtherFunctionActivity;
 import com.example.wanhao.schoolservice.adapter.GridAdapter;
 import com.example.wanhao.schoolservice.base.LazyLoadFragment;
 import com.example.wanhao.schoolservice.bean.GridBean;
 import com.example.wanhao.schoolservice.util.ImageLoader;
 import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +79,7 @@ public class MainFragment extends LazyLoadFragment {
         gridAdapter.setNewData(iconList);
 
         //设置图片加载器
+        banner.setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE);
         banner.setImageLoader(new ImageLoader());
         //设置图片集合
         List<Integer> list = new ArrayList<>();
@@ -84,17 +88,39 @@ public class MainFragment extends LazyLoadFragment {
         list.add(R.drawable.ce_2);
         list.add(R.drawable.ce_3);
         list.add(R.drawable.ce_4);
+        List<String> stringList = new ArrayList<>();
+        stringList.add("西安科技大学运动会开始啦！");
+        stringList.add("快为你喜欢的美食打call");
+        stringList.add("第四届互联网+比赛即将开始");
+        stringList.add("小调后街健身房开业咯");
+        stringList.add("史上最全的高数学习资源");
 
         banner.setImages(list);
+        banner.setBannerTitles(stringList);
         //banner设置方法全部调用完毕时最后调用
         banner.start();
     }
 
     private void initEvent() {
-        gridAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+        gridAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (position){
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        startActivity(new Intent(getContext(), OtherFunctionActivity.class));
+                        break;
 
+                }
             }
         });
     }

@@ -1,10 +1,14 @@
 package com.example.wanhao.schoolservice.fragment;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.wanhao.schoolservice.R;
+import com.example.wanhao.schoolservice.activity.BBSActivity;
 import com.example.wanhao.schoolservice.adapter.BBSItemAdapter;
 import com.example.wanhao.schoolservice.base.LazyLoadFragment;
 import com.example.wanhao.schoolservice.bean.BBSItem;
@@ -44,26 +48,26 @@ public class BBSFagment extends LazyLoadFragment {
     private void initView() {
 
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
-        recyclerView.addItemDecoration(new MyItemDecoration());
 
         list = new ArrayList<>();
-        BBSItem item = new BBSItem();
-        for(int x=0;x<10;x++){
-            item = new BBSItem();
-            item.setImgID(R.drawable.ceshi_head);
-            item.setTitle("西安科技大学");
-            item.setContent("什么都没有呢");
-            list.add(item);
-        }
 
-        adapter = new BBSItemAdapter(R.layout.item_bbs,list);
+        list.add(new BBSItem(R.drawable.icon_school_1,"西安科技大学","简称“西科大”"));
+        list.add(new BBSItem(R.drawable.icon_school_2,"西安电子科技大学","简称“西电”或“西军电”"));
+        list.add(new BBSItem(R.drawable.icon_school_3,"西安邮电大学","简称“西邮”"));
+
+        adapter = new BBSItemAdapter(list,getContext());
         recyclerView.setAdapter(adapter);
 
     }
 
 
     private void initEvent() {
-
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                startActivity(new Intent(getContext(), BBSActivity.class));
+            }
+        });
     }
 
 }

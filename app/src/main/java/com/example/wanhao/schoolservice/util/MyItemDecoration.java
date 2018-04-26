@@ -25,7 +25,7 @@ public class MyItemDecoration extends RecyclerView.ItemDecoration {
 public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
 //先初始化一个Paint来简单指定一下Canvas的颜色，就黑的吧！
 Paint paint = new Paint();
-paint.setColor(parent.getContext().getResources().getColor(R.color.gray_btn_bg_pressed_color));
+paint.setColor(parent.getContext().getResources().getColor(R.color.bottom_normal));
 
 //获得RecyclerView中总条目数量
 int childCount = parent.getChildCount();

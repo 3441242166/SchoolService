@@ -11,6 +11,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.wanhao.schoolservice.R;
 import com.example.wanhao.schoolservice.activity.LodingActivity;
 import com.example.wanhao.schoolservice.activity.SettingActivity;
+import com.example.wanhao.schoolservice.activity.UserMessageActivity;
 import com.example.wanhao.schoolservice.adapter.ImageTextAdapter;
 import com.example.wanhao.schoolservice.base.LazyLoadFragment;
 import com.example.wanhao.schoolservice.bean.GridBean;
@@ -53,7 +54,6 @@ public class MeFragment extends LazyLoadFragment {
 
     private void initView() {
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
-        recyclerView.addItemDecoration(new MyItemDecoration());
 
         List<GridBean> list = new ArrayList<>();
         GridBean bean = new GridBean(R.drawable.usericon_0,"消息中心");
@@ -98,5 +98,11 @@ public class MeFragment extends LazyLoadFragment {
                 }
         }
     });
+        imageHead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), UserMessageActivity.class));
+            }
+        });
     }
 }

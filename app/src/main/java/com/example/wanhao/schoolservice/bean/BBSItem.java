@@ -10,8 +10,10 @@ public class BBSItem {
     String title;
     String content;
 
-    public BBSItem(){
-
+    public BBSItem(int imgID,String title,String content){
+        this.imgID = imgID;
+        this.title = title;
+        this.content = content;
     }
 
 
