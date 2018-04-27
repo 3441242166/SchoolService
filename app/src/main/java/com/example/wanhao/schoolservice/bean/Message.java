@@ -1,12 +1,19 @@
 package com.example.wanhao.schoolservice.bean;
 
+import android.text.TextUtils;
+
+import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by wanhao on 2018/1/20.
  */
 
-public class Message {
+public class Message implements MultiItemEntity {
+
+    public static final int NORMAL = 0;
+    public static final int IMAGE = 1;
+
     @SerializedName("title")
     String title;
     @SerializedName("ctime")
@@ -67,5 +74,10 @@ public class Message {
 
     public void setContantUrl(String contantUrl) {
         this.contantUrl = contantUrl;
+    }
+
+    @Override
+    public int getItemType() {
+        return TextUtils.isEmpty(imageUrl) ? NORMAL:IMAGE;
     }
 }

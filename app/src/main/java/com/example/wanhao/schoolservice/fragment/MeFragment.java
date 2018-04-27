@@ -60,7 +60,7 @@ public class MeFragment extends LazyLoadFragment {
         list.add(bean);
         bean = new GridBean(R.drawable.usericon_1,"我的关注");
         list.add(bean);
-        bean = new GridBean(R.drawable.usericon_2,"积分中心");
+        bean = new GridBean(R.drawable.usericon_2,"我的收藏");
         list.add(bean);
         bean = new GridBean(R.drawable.usericon_3,"留言板");
         list.add(bean);

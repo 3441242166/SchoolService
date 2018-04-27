@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.wanhao.schoolservice.R;
 import com.example.wanhao.schoolservice.adapter.MessageItemAdapter;
 import com.example.wanhao.schoolservice.base.IBaseView;
@@ -54,18 +55,18 @@ public class ListFragment extends LazyLoadFragment implements IBaseView<List<Mes
         refreshView.setNestedScrollingEnabled(false);
 
         messageList = new ArrayList<>();
-        adapter = new MessageItemAdapter(getActivity());
+        adapter = new MessageItemAdapter(null,getContext());
         recyclerView.setAdapter(adapter);
         presenter = new ListFragmentPresenter(this,getActivity());
     }
 
     private void initEvent(){
-        adapter.setOnItemClickListener(new MessageItemAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Toast.makeText(getActivity(),""+position, Toast.LENGTH_SHORT).show();
-            }
-        });
+       adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+           @Override
+           public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+               Toast.makeText(getActivity(),""+position, Toast.LENGTH_SHORT).show();
+           }
+       });
 
         refreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
             @Override
@@ -79,25 +80,11 @@ public class ListFragment extends LazyLoadFragment implements IBaseView<List<Mes
             }
         });
 
-        adapter.setOnItemClickListener(new MessageItemAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Toast.makeText(getActivity(),messageList.get(position).getContantUrl(),Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        adapter.setOnLongItemClickListener(new MessageItemAdapter.OnLongItemClickListener() {
-            @Override
-            public void onLongItemClick(View view, int position) {
-                Toast.makeText(getActivity(),messageList.get(position).getTime(),Toast.LENGTH_SHORT).show();
-
-            }
-        });
     }
 
     public void setData(List<Message> data){
         messageList =data;
-        adapter.setData(messageList);
+        adapter.setNewData(messageList);
     }
 
 
@@ -117,7 +104,7 @@ public class ListFragment extends LazyLoadFragment implements IBaseView<List<Mes
     public void loadDataSuccess(List<Message> tData) {
         Log.i(TAG, "loadDataSuccess: ");
         messageList = tData;
-        adapter.setData(messageList);
+        adapter.setNewData(messageList);
     }
 
 

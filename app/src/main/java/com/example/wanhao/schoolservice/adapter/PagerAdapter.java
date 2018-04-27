@@ -13,11 +13,12 @@ import java.util.List;
 public class PagerAdapter <T extends Fragment>extends FragmentPagerAdapter {
 
     List<T> list;
-    String []ar ={"推荐","关注","竞赛","考试","生活"};
+    String []ar ;
 
-    public PagerAdapter(FragmentManager fm, List<T> list) {
+    public PagerAdapter(FragmentManager fm, List<T> list,String []ar) {
         super(fm);
         this.list = list;
+        this.ar = ar;
     }
 
     @Override

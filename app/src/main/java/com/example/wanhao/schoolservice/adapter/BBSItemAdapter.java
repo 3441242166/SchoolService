@@ -32,6 +32,5 @@ public class BBSItemAdapter extends BaseQuickAdapter<BBSItem,BaseViewHolder> {
         helper.setText(R.id.item_bbs_title,item.getTitle());
         helper.setText(R.id.item_bbs_content,item.getContent());
         Glide.with(context).load(item.getImgID()).into((ImageView) helper.getView(R.id.item_bbs_img));
-        //helper.setImageResource(R.id.item_bbs_img,item.getImgID());
     }
 }

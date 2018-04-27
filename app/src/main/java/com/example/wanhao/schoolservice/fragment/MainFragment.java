@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.wanhao.schoolservice.R;
+import com.example.wanhao.schoolservice.activity.InterestActivity;
 import com.example.wanhao.schoolservice.activity.OtherFunctionActivity;
 import com.example.wanhao.schoolservice.adapter.GridAdapter;
 import com.example.wanhao.schoolservice.base.LazyLoadFragment;
@@ -109,6 +110,7 @@ public class MainFragment extends LazyLoadFragment {
                     case 0:
                         break;
                     case 1:
+                        startActivity(new Intent(getContext(), InterestActivity.class));
                         break;
                     case 2:
                         break;

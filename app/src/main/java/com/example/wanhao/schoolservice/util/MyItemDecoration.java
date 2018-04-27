@@ -31,11 +31,8 @@ paint.setColor(parent.getContext().getResources().getColor(R.color.bottom_normal
 int childCount = parent.getChildCount();
 
 //遍历一下
-for (int i = 0; i < childCount; i++) {
-if (i == 0) {
-//如果是第一个条目，那么我们就不画边框了
-continue;
-}
+for (int i = 0; i < childCount-1; i++) {
+
 //获得子View，也就是一个条目的View，准备给他画上边框
 View childView = parent.getChildAt(i);
 
@@ -46,9 +43,9 @@ int width = childView.getWidth();
 int height = childView.getHeight();
 
 //根据这些点画条目的四周的线
-c.drawLine(x, y, x + width, y, paint);
-c.drawLine(x, y, x, y + height, paint);
-c.drawLine(x + width, y, x + width, y + height, paint);
+//c.drawLine(x, y, x + width, y, paint);
+//c.drawLine(x, y, x, y + height, paint);
+//c.drawLine(x + width, y, x + width, y + height, paint);
 c.drawLine(x, y + height, x + width, y + height, paint);
 
 //当然了，这里大家肯定是要根据自己不同的设计稿进行画线，或者画一些其他的东西，都可以在这里搞，非常方便

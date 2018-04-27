@@ -75,7 +75,8 @@ public class MessageFragment extends LazyLoadFragment{
         for(int x=0;x<5;x++)
             fragmentList.add(new ListFragment());
 
-        viewPager.setAdapter(new PagerAdapter<ListFragment>(getActivity().getSupportFragmentManager(),fragmentList));
+        String []ar ={"推荐","关注","竞赛","考试","生活"};
+        viewPager.setAdapter(new PagerAdapter<ListFragment>(getActivity().getSupportFragmentManager(),fragmentList,ar));
         tabLayout.setupWithViewPager(viewPager);
 
         viewPager.setOverScrollMode(viewPager.OVER_SCROLL_NEVER);

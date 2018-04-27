@@ -26,7 +26,8 @@
         <activity android:name=".activity.CareActivity" />
         <activity android:name=".activity.BBSActivity" />
         <activity android:name=".activity.OtherFunctionActivity" />
-        <activity android:name=".activity.UserMessageActivity"></activity>
+        <activity android:name=".activity.UserMessageActivity" />
+        <activity android:name=".activity.InterestActivity"></activity>
     </application>
 
 </manifest>
