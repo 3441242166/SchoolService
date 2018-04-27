@@ -1,103 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="3dp"
+    android:layout_marginBottom="3dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:orientation="vertical"
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
 
         <LinearLayout
+            android:id="@+id/ac_message_headlayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ad_message_head"
-                android:layout_width="30dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:src="@drawable/head"
+                app:layout_constraintBottom_toTopOf="@+id/ad_message_name"
+                app:layout_constraintEnd_toStartOf="@+id/ad_message_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ad_message_name" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="left"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:src="@drawable/head" />
+                android:orientation="vertical">
 
-            <TextView
+                <TextView
+                    android:id="@+id/ad_message_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:text="2017-12-12 12:11:02"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ad_message_head"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                android:id="@+id/ad_message_name"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center|left"
-                android:text="冰与火之歌"
-                android:textColor="@color/blackText" />
-
-            <TextView
-                android:id="@+id/ad_message_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:text="2017-12-12 12:11:02"
-                android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/ad_message_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:text="冰与火之歌"
+                    android:textColor="@color/blackText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ad_message_head"
+                    app:layout_constraintTop_toBottomOf="@+id/ad_message_time" />
+            </LinearLayout>
 
         </LinearLayout>
 
+
         <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:id="@+id/ad_message_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_marginTop="8dp"
             android:text="西科大程序设计大赛开始啦，快来报名！！！"
             android:textColor="@color/blackText"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ac_message_headlayout" />
 
         <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:id="@+id/ad_message_contant"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_marginTop="8dp"
             android:maxLines="3"
-            android:text='ACM程序设计大赛是大学级别最高的脑力竞赛，素来被冠以"程序设计的奥林匹克"的尊称。大赛至今已有近40年的历史，是世界范围内历史最悠久、规模最大的程序设计竞赛。比赛形式是：从各大洲区域预赛出线的参赛队伍，于指定的时间、地点参加世界级的决赛，由1个教练、3个成员组成的小组应用一台计算机解决7到13个生活中的实际问题。'
-            android:textSize="14sp" />
+            android:text='ACM程序设计大赛是大学级别最高的脑力竞赛，素来被冠以"程序设计的奥林匹克"的尊称。'
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ad_message_title" />
 
-        <LinearLayout
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:gravity="end"
-            android:orientation="horizontal">
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7" />
+        <com.sackcentury.shinebuttonlib.ShineButton
+            android:id="@+id/ad_message_good"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginTop="8dp"
+            app:allow_random_color="true"
+            app:btn_fill_color="#a7d84c"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ad_message_image_share"
+            app:layout_constraintTop_toBottomOf="@+id/ad_message_contant"
+            app:siShape="@raw/smile" />
 
-            <Button
-                android:layout_marginRight="10dp"
-                android:id="@+id/ad_message_good"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+        <com.sackcentury.shinebuttonlib.ShineButton
+            android:id="@+id/ad_message_remark"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            app:allow_random_color="true"
+            app:btn_fill_color="#e69310"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ad_message_contant"
+            app:siShape="@raw/like" />
 
-            <Button
-                android:layout_marginRight="10dp"
-                android:id="@+id/ad_message_remark"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+        <com.sackcentury.shinebuttonlib.ShineButton
+            android:id="@+id/ad_message_image_share"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginTop="8dp"
+            app:allow_random_color="true"
+            app:btn_fill_color="#9983CC39"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ad_message_remark"
+            app:layout_constraintTop_toBottomOf="@+id/ad_message_contant"
+            app:siShape="@raw/heart" />
 
-            <Button
-                android:layout_marginRight="10dp"
-                android:id="@+id/ad_message_image_share"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-        </LinearLayout>
 
-    </LinearLayout>
-
+    </android.support.constraint.ConstraintLayout>
 
 
 </android.support.v7.widget.CardView>

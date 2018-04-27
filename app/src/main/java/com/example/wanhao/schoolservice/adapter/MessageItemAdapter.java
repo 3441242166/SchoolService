@@ -82,7 +82,7 @@ public class MessageItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             Message message =list.get(position);
 
             ((HolderNormal)holder).title.setText(message.getTitle());
-            ((HolderNormal)holder).name.setText(message.getUser());
+            ((HolderNormal)holder).name.setText("冰与火之歌");
             ((HolderNormal)holder).time.setText(message.getTime());
             ((HolderNormal)holder).contant.setText(message.getContantUrl());
         }
@@ -150,12 +150,12 @@ public class MessageItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         public HolderImage(View view) {
             super(view);
-            time = (TextView) view.findViewById(R.id.ad_message_image_time);
-            head = (CircleImageView) view.findViewById(R.id.ad_message_image_head);
-            name = (TextView) view.findViewById(R.id.ad_message_image_name);
-            title = (TextView) view.findViewById(R.id.ad_message_image_title);
-            contant = (TextView) view.findViewById(R.id.ad_message_image_contant);
-            image = (ImageView) view.findViewById(R.id.ad_message_image_image);
+            time = (TextView) view.findViewById(R.id.ad_message_time);
+            head = (CircleImageView) view.findViewById(R.id.ad_message_head);
+            name = (TextView) view.findViewById(R.id.ad_message_name);
+            title = (TextView) view.findViewById(R.id.ad_message_title);
+            contant = (TextView) view.findViewById(R.id.ad_message_contant);
+            image = (ImageView) view.findViewById(R.id.ad_message_image);
         }
     }
 }
