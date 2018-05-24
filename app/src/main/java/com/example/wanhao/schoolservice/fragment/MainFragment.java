@@ -84,11 +84,11 @@ public class MainFragment extends LazyLoadFragment {
         banner.setImageLoader(new ImageLoader());
         //设置图片集合
         List<Integer> list = new ArrayList<>();
-        list.add(R.drawable.ce_0);
-        list.add(R.drawable.ce_1);
-        list.add(R.drawable.ce_2);
-        list.add(R.drawable.ce_3);
-        list.add(R.drawable.ce_4);
+        list.add(R.drawable.photo_yundong);
+        list.add(R.drawable.photo_food);
+        list.add(R.drawable.photo_hulianwang);
+        list.add(R.drawable.photo_jianshen);
+        list.add(R.drawable.photo_xuexi);
         List<String> stringList = new ArrayList<>();
         stringList.add("西安科技大学运动会开始啦！");
         stringList.add("快为你喜欢的美食打call");

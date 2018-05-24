@@ -12,12 +12,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.wanhao.schoolservice.R;
 import com.example.wanhao.schoolservice.presenter.RegisterPresenter;
 import com.example.wanhao.schoolservice.view.IRegisterView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener,IRegisterView{
     private static final String TAG = "RegisterActivity";
@@ -34,8 +36,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText etCode;
     @BindView(R.id.ac_register_getcode)
     TextView tvCode;
+    private MaterialDialog dialog;
 
-    RegisterPresenter registerPresenter;
+    private RegisterPresenter presenter;
 
     CountDownTimer timer = new CountDownTimer(60000, 1000) {
         @Override
@@ -56,32 +59,32 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         InitView();
-        InitEvent();
     }
 
     private void InitView() {
-
-        registerPresenter = new RegisterPresenter(this,this);
+        presenter = new RegisterPresenter(this,this);
 
         btGo.setOnClickListener(this);
         fab.setOnClickListener(this);
         tvCode.setOnClickListener(this);
+
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(this)
+                .title("Zzz...")
+                .content("加载中...")
+                .progress(true,100,false);
+        dialog = builder.build();
     }
 
-    private void InitEvent() {
-
-    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ac_register_loding:
-
+                presenter.register(etUsername.getText().toString(),etPassword.getText().toString(),etCode.getText().toString());
                 break;
             case R.id.ac_register_getcode:
-                registerPresenter.getVerificationCode(etUsername.getText().toString(), tvCode, timer);
+                presenter.getVerificationCode(etUsername.getText().toString(), tvCode, timer);
                 break;
             case R.id.ac_register_fab:
                 onBackPressed();
@@ -91,21 +94,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void showProgress() {
-
+        dialog.show();
     }
 
     @Override
-    public void disimissProgress() {
-
+    public void dismissProgress() {
+        dialog.dismiss();
     }
 
     @Override
     public void loadDataSuccess(Object tData) {
-
+        finish();
     }
 
     @Override
     public void loadDataError(String throwable) {
-        Toast.makeText(this,throwable,Toast.LENGTH_SHORT).show();
+        Toasty.error(this,throwable,Toast.LENGTH_SHORT,true).show();
     }
 }

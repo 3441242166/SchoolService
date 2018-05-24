@@ -55,7 +55,7 @@ public class ListFragmentPresenter extends BasePresenterImp<IBaseView<List<Messa
 
             @Override
             public void requestComplete() {
-                iBaseView.disimissProgress();
+                iBaseView.dismissProgress();
             }
 
             @Override

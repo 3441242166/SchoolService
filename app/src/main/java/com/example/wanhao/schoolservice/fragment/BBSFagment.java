@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.wanhao.schoolservice.R;
 import com.example.wanhao.schoolservice.activity.BBSActivity;
+import com.example.wanhao.schoolservice.activity.SearchActivity;
 import com.example.wanhao.schoolservice.adapter.BBSItemAdapter;
 import com.example.wanhao.schoolservice.base.LazyLoadFragment;
 import com.example.wanhao.schoolservice.bean.BBSItem;
@@ -66,6 +67,13 @@ public class BBSFagment extends LazyLoadFragment {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 startActivity(new Intent(getContext(), BBSActivity.class));
+            }
+        });
+
+        btSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), SearchActivity.class));
             }
         });
     }

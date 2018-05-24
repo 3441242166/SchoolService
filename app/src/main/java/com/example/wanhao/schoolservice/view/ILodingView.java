@@ -11,4 +11,5 @@ public interface ILodingView extends IBaseView{
     //跳转到选择兴趣界面
     void gotoChooseInterestedCategoryActivity(String msg);
 
+    void setData(String num,String password);
 }

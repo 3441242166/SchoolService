@@ -26,6 +26,6 @@ public class ChatRoomAdapter extends BaseQuickAdapter<ChatRoomBean,BaseViewHolde
         helper.setText(R.id.item_chatroom_title,item.getTitle());
         helper.setText(R.id.item_chatroom_time,item.getTime());
         helper.setText(R.id.item_chatroom_message,item.getMessage());
-        Glide.with(context).load(R.drawable.head).into((ImageView) helper.getView(R.id.item_chatroom_head));
+        Glide.with(context).load(item.getImgUrl()).into((ImageView) helper.getView(R.id.item_chatroom_head));
     }
 }

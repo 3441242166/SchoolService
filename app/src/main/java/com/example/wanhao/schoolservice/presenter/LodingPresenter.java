@@ -5,9 +5,9 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.wanhao.schoolservice.bean.HttpResult;
+import com.example.wanhao.schoolservice.config.ApiConfig;
 import com.example.wanhao.schoolservice.config.ApiConstant;
-import com.example.wanhao.schoolservice.config.Constant;
-import com.example.wanhao.schoolservice.service.LodingRegisterService;
+import com.example.wanhao.schoolservice.service.LandingRegisterService;
 import com.example.wanhao.schoolservice.util.JsonUtil;
 import com.example.wanhao.schoolservice.util.RetrofitHelper;
 import com.example.wanhao.schoolservice.util.SaveDataUtil;
@@ -37,9 +37,14 @@ public class LodingPresenter implements ILoginPresenter{
         this.mContext = context;
     }
 
+    public void initData(){
+
+        iLoginView.setData(SaveDataUtil.getValueFromSharedPreferences(mContext,ApiConstant.USER_NUMBER)
+                ,SaveDataUtil.getValueFromSharedPreferences(mContext,ApiConstant.USER_PASSWORD));
+    }
+
     @Override
-    public void login(String phoneNum, String password) {
-        Log.i(TAG, "login: "+phoneNum+password);
+    public void login(final String phoneNum, final String password) {
         if (TextUtils.isEmpty(phoneNum)){
             iLoginView.loadDataError("账号不能为空");
             return;
@@ -48,39 +53,44 @@ public class LodingPresenter implements ILoginPresenter{
             iLoginView.loadDataError("密码不能为空");
             return;
         }
-        HashMap<String,String> hashMap = new HashMap<>();
-        hashMap.put(ApiConstant.LODING_COUNT,phoneNum);
-        hashMap.put(ApiConstant.LODING_PASSWORD,password);
 
         //开始向服务器请求
         iLoginView.showProgress();
-        LodingRegisterService service = RetrofitHelper.get(LodingRegisterService.class);
+        LandingRegisterService service = RetrofitHelper.get(LandingRegisterService.class, ApiConfig.BASE_URL);
 
-        service.loding(JsonUtil.getJsonBody(hashMap))
+        service.loding(phoneNum,password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Response<ResponseBody>>() {
                     @Override
                     public void accept(Response<ResponseBody> response) throws Exception {
-                        Log.i(TAG, "accept: ");
-                        Gson gson = new Gson();
-                        HttpResult result = gson.fromJson(response.body().string(),HttpResult.class);
+                        String str = response.body().string();
+                        Log.i(TAG, "accept: " + str);
+                        HttpResult<String> msg = new Gson().fromJson(str,HttpResult.class);
+
+                        if(!msg.getCode().equals("200102")){
+                            iLoginView.loadDataError("error");
+                            iLoginView.dismissProgress();
+                        }
+                        SaveDataUtil.saveToSharedPreferences(mContext,ApiConstant.USER_NUMBER, phoneNum);
+                        SaveDataUtil.saveToSharedPreferences(mContext,ApiConstant.USER_PASSWORD, password);
                         //token 获取与保存
-                        String token = (String) result.getData();
-                        String oldToken = SaveDataUtil.getValueFromSharedPreferences(mContext, Constant.SHAREDPREFERENCES_DEFAULT_NAME, ApiConstant.OAUTH_TOKEN);
+                        String token = msg.getData();
+                        String oldToken = SaveDataUtil.getValueFromSharedPreferences(mContext, ApiConstant.USER_TOKEN);
+
                         if (TextUtils.isEmpty(oldToken)){
-                            iLoginView.disimissProgress();
+                            iLoginView.dismissProgress();
                             iLoginView.gotoChooseInterestedCategoryActivity("");
                         }else {
-                            iLoginView.disimissProgress();
+                            iLoginView.dismissProgress();
                             iLoginView.loadDataSuccess("");
                         }
-                        SaveDataUtil.saveToSharedPreferences(mContext, Constant.SHAREDPREFERENCES_DEFAULT_NAME,ApiConstant.OAUTH_TOKEN, token);
+                        SaveDataUtil.saveToSharedPreferences(mContext,ApiConstant.USER_TOKEN, token);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        iLoginView.disimissProgress();
+                        iLoginView.dismissProgress();
                         iLoginView.loadDataError(throwable.toString());
                         Log.w(TAG, throwable);
                     }

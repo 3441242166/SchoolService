@@ -17,7 +17,7 @@ public interface IBaseView<T> {
      * @author   dc
      * @date 2017/2/16 11:01
      */
-    void disimissProgress();
+    void dismissProgress();
 
     /**
      * @descriptoin  请求数据成功

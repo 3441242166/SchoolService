@@ -39,16 +39,16 @@ public class OtherFunctionActivity extends TopBarBaseActivity{
 
     private void initData() {
         list = new ArrayList<>();
-        list.add(new GridBean(R.drawable.icon_main_fragment_1,"校园卡"));
-        list.add(new GridBean(R.drawable.icon_main_fragment_2,"成绩查询"));
-        list.add(new GridBean(R.drawable.icon_main_fragment_3,"代取快递"));
-        list.add(new GridBean(R.drawable.icon_main_fragment_4,"失物招领"));
-        list.add(new GridBean(R.drawable.icon_main_fragment_5,"表白墙"));
-        list.add(new GridBean(R.drawable.icon_main_fragment_6,"匿名聊天室"));
-        list.add(new GridBean(R.drawable.icon_main_fragment_1,"树洞"));
-        list.add(new GridBean(R.drawable.icon_main_fragment_2,"图书馆查询"));
-        list.add(new GridBean(R.drawable.icon_main_fragment_3,"课表查询"));
-        list.add(new GridBean(R.drawable.icon_main_fragment_4,"额 没了？"));
+        list.add(new GridBean(R.drawable.icon_other_0,"校园卡"));
+        list.add(new GridBean(R.drawable.icon_other_1,"成绩查询"));
+        list.add(new GridBean(R.drawable.icon_other_2,"代取快递"));
+        list.add(new GridBean(R.drawable.icon_other_3,"失物招领"));
+        list.add(new GridBean(R.drawable.icon_other_4,"表白墙"));
+        list.add(new GridBean(R.drawable.icon_other_5,"匿名聊天室"));
+        list.add(new GridBean(R.drawable.icon_other_6,"树洞"));
+        list.add(new GridBean(R.drawable.icon_other_7,"图书馆查询"));
+        list.add(new GridBean(R.drawable.icon_other_8,"课表查询"));
+        list.add(new GridBean(R.drawable.icon_other_9,"补习服务"));
 
     }
 

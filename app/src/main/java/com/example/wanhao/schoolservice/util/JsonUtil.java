@@ -18,7 +18,6 @@ public class JsonUtil {
     public static RequestBody getJsonBody(HashMap<String,String> map){
 
         String jsonString = new Gson().toJson(map);
-        Log.i(TAG, "getJsonBody: jsonString = "+jsonString);
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(JSON, jsonString);
         return body;

@@ -95,7 +95,7 @@ public class ListFragment extends LazyLoadFragment implements IBaseView<List<Mes
     }
 
     @Override
-    public void disimissProgress() {
+    public void dismissProgress() {
         Log.i(TAG, "disimissProgress: ");
         refreshView.setRefreshing(false);
     }
@@ -111,6 +111,6 @@ public class ListFragment extends LazyLoadFragment implements IBaseView<List<Mes
     @Override
     public void loadDataError(String throwable) {
         Toast.makeText(getActivity(),throwable,Toast.LENGTH_SHORT).show();
-        disimissProgress();
+        dismissProgress();
     }
 }

@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.wanhao.schoolservice.R;
 import com.example.wanhao.schoolservice.presenter.LodingPresenter;
 import com.example.wanhao.schoolservice.view.ILodingView;
@@ -36,6 +37,7 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
     @BindView(R.id.ac_loding_password)
     EditText etPassword;
 
+    MaterialDialog dialog;
     LodingPresenter presenter;
 
     @Override
@@ -45,7 +47,6 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
         ButterKnife.bind(this);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         initView();
-
         fab.setOnClickListener(this);
         btGo.setOnClickListener(this);
         btForget.setOnClickListener(this);
@@ -64,7 +65,6 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
                         fab, fab.getTransitionName()).toBundle());
                 break;
             case R.id.ac_loding_loding:
-                startActivity(new Intent(this,MainActivity.class));
                 hideKeyboard();
                 presenter.login(etUsername.getText().toString(),etPassword.getText().toString());
                 break;
@@ -75,9 +75,15 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initView() {
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(this)
+                .title("Zzz...")
+                .content("加载中...")
+                .progress(true,100,false);
 
+        dialog = builder.build();
 
         presenter = new LodingPresenter(this,this);
+        presenter.initData();
     }
 
     @Override
@@ -86,13 +92,19 @@ public class LodingActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
-    public void showProgress() {
-
+    public void setData(String num, String password) {
+        etUsername.setText(num);
+        etPassword.setText(password);
     }
 
     @Override
-    public void disimissProgress() {
+    public void showProgress() {
+        dialog.show();
+    }
 
+    @Override
+    public void dismissProgress() {
+        dialog.dismiss();
     }
 
     @Override

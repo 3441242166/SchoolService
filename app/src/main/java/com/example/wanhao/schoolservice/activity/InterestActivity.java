@@ -52,6 +52,7 @@ public class InterestActivity extends TopBarBaseActivity {
     }
 
     private void initView() {
+        setTitle("兴趣圈");
         fragmentList = new ArrayList<>();
         fragmentList.add(new ChatListFragment());
         fragmentList.add(new DynamicFragment());

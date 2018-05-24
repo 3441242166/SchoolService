@@ -11,9 +11,10 @@ public class ChatRoomBean {
 
     String imgUrl;
 
-    public ChatRoomBean(String title,String time,String message){
+    public ChatRoomBean(String title,String time,String message,String imgUrl){
         this.title = title;
         this.time = time;
+        this.imgUrl = imgUrl;
         this.message = message;
     }
 

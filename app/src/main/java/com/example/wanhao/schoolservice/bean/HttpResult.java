@@ -1,15 +1,17 @@
 package com.example.wanhao.schoolservice.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by wanhao on 2017/5/13.
  */
 
 public class HttpResult<T> {
-
+    @SerializedName("code")
     String code;
-
+    @SerializedName("msg")
     String msg;
-
+    @SerializedName("data")
     private T data;
 
     public String getCode() {

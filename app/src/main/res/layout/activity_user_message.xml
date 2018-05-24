@@ -8,40 +8,34 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ac_usermessage_head"
-        android:layout_width="0dp"
+        android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="38dp"
         android:src="@drawable/head"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ac_usermessage_name"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/ac_usermessage_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="113dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="114dp"
+        android:layout_marginTop="24dp"
         android:text="冰与火之歌"
         android:textColor="@color/blackText"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ac_usermessage_3"
-        app:layout_constraintEnd_toStartOf="@+id/ac_usermessage_head"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/ac_usermessage_head" />
 
     <TextView
         android:id="@+id/ac_usermessage_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="26dp"
         android:text="学校"
         android:textColor="@color/blackText"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/ac_usermessage_3"
         app:layout_constraintStart_toStartOf="@+id/ac_usermessage_4"
         app:layout_constraintTop_toBottomOf="@+id/ac_usermessage_4" />
 
@@ -49,7 +43,7 @@
         android:id="@+id/ac_usermessage_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="32dp"
         android:text="学院"
         android:textColor="@color/blackText"
         android:textSize="18sp"
@@ -60,21 +54,21 @@
         android:id="@+id/ac_usermessage_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="98dp"
+        android:layout_marginEnd="106dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="236dp"
+        android:layout_marginTop="48dp"
         android:text="性别"
         android:textColor="@color/blackText"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/ac_usermessage_group"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/ac_usermessage_name" />
 
     <TextView
         android:id="@+id/ac_usermessage_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="21dp"
+        android:layout_marginEnd="23dp"
         android:layout_marginTop="30dp"
         android:text="个性签名"
         android:textColor="@color/blackText"
@@ -87,11 +81,10 @@
         android:id="@+id/ac_usermessage_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="26dp"
         android:text="学号"
         android:textColor="@color/blackText"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/ac_usermessage_2"
         app:layout_constraintStart_toStartOf="@+id/ac_usermessage_2"
         app:layout_constraintTop_toBottomOf="@+id/ac_usermessage_2" />
 
@@ -99,14 +92,16 @@
         android:id="@+id/ac_usermessage_group"
         android:layout_width="0dp"
         android:layout_height="28dp"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="103dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="104dp"
         android:layout_weight="2"
         android:checkedButton="@+id/ac_usermessage_men"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/ac_usermessage_4"
+        app:layout_constraintBottom_toBottomOf="@+id/ac_usermessage_school"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ac_usermessage_3">
+        app:layout_constraintStart_toEndOf="@+id/ac_usermessage_3"
+        app:layout_constraintTop_toBottomOf="@+id/ac_usermessage_head">
 
 
         <RadioButton
@@ -129,30 +124,31 @@
         android:id="@+id/ac_usermessage_academy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:text="计算机学院"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/ac_usermessage_school"
-        app:layout_constraintTop_toBottomOf="@+id/ac_usermessage_school" />
+        app:layout_constraintBottom_toBottomOf="@+id/ac_usermessage_2"
+        app:layout_constraintStart_toStartOf="@+id/ac_usermessage_school" />
 
     <TextView
         android:id="@+id/ac_usermessage_number"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="84dp"
         android:text="16408070815"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/ac_usermessage_academy"
-        app:layout_constraintTop_toBottomOf="@+id/ac_usermessage_academy" />
+        app:layout_constraintBottom_toBottomOf="@+id/ac_usermessage_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ac_usermessage_academy" />
 
     <TextView
         android:id="@+id/ac_usermessage_school"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="26dp"
         android:text="西安科技大学"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ac_usermessage_1"
         app:layout_constraintStart_toStartOf="@+id/ac_usermessage_signature"
         app:layout_constraintTop_toBottomOf="@+id/ac_usermessage_signature" />
 
@@ -160,12 +156,11 @@
         android:id="@+id/ac_usermessage_signature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="21dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginEnd="19dp"
         android:text="还没有个性签名"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ac_usermessage_4"
-        app:layout_constraintTop_toBottomOf="@+id/ac_usermessage_group" />
+        app:layout_constraintTop_toTopOf="@+id/ac_usermessage_4" />
 
 </android.support.constraint.ConstraintLayout>

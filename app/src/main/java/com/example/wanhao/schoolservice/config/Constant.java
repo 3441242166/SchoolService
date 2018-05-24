@@ -1,7 +1,7 @@
 package com.example.wanhao.schoolservice.config;
 
 /**
- * Created by wanhao on 2017/11/25.
+ * 用户常量
  */
 
 public class Constant {

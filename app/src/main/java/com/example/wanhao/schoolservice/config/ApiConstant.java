@@ -1,17 +1,17 @@
 package com.example.wanhao.schoolservice.config;
 
 /**
- * Created by wanhao on 2018/1/31.
+ * 网络请求常量
  */
 
 public class ApiConstant {
 
-    public final static String LODING_COUNT ="count";
-    public final static String LODING_PASSWORD ="password";
+    public final static String USER_NUMBER="userNumber";
+    public final static String USER_PASSWORD ="password";
+    public final static String USER_TARGET ="target";
+    public static final String USER_TOKEN = "token";
 
-    //用户token
-    public static final String OAUTH_TOKEN = "oauth_token";
-
+    public static final String  FILE_NAME = "app_data";
 
     public static final String NUM = "num";         //指定返回数量，最大80
     public static final String KEY = "key";         //API密钥（请在个人中心获取）

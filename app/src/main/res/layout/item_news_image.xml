@@ -9,6 +9,7 @@
 
 
     <android.support.constraint.ConstraintLayout
+        android:layout_margin="3dp"
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -69,15 +70,16 @@
 
 
         <TextView
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:id="@+id/ad_message_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="8dp"
             android:text="西科大程序设计大赛开始啦，快来报名！！！"
             android:textColor="@color/blackText"
             android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ac_message_headlayout" />
 
@@ -133,7 +135,7 @@
             android:layout_marginEnd="28dp"
             android:layout_marginTop="8dp"
             app:allow_random_color="true"
-            app:btn_fill_color="#9983CC39"
+            app:btn_fill_color="#e0e32a1d"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ad_message_remark"
             app:layout_constraintTop_toBottomOf="@+id/ad_message_contant"

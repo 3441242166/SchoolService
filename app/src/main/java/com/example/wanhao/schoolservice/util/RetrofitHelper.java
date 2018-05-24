@@ -61,13 +61,13 @@ public class RetrofitHelper {
         return retrofit.create(tClass);
     }
 
-    public static <T> T get(Class<T> tClass) {
+    public static <T> T get(Class<T> tClass,String baseUrl) {
         OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
         builder.retryOnConnectionFailure(true)
                 .retryOnConnectionFailure(true)
                 .connectTimeout(5, TimeUnit.SECONDS);
 
-        return new Retrofit.Builder().baseUrl(ApiConfig.BASE_API_URL)
+        return new Retrofit.Builder().baseUrl(baseUrl)
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

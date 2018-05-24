@@ -17,6 +17,7 @@ public class BBSActivity extends TopBarBaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        setTitle("西安科技大学");
         setTopLeftButton(new OnClickListener() {
             @Override
             public void onClick() {

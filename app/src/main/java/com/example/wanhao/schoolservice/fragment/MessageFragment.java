@@ -1,11 +1,15 @@
 package com.example.wanhao.schoolservice.fragment;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.wanhao.schoolservice.R;
+import com.example.wanhao.schoolservice.activity.SearchActivity;
 import com.example.wanhao.schoolservice.adapter.GridAdapter;
 import com.example.wanhao.schoolservice.adapter.PagerAdapter;
 import com.example.wanhao.schoolservice.base.LazyLoadFragment;
@@ -29,6 +33,8 @@ public class MessageFragment extends LazyLoadFragment{
     TabLayout tabLayout;
     @BindView(R.id.fg_message_viewpager)
     ViewPager viewPager;
+    @BindView(R.id.fg_message_search)
+    TextView btSearch;
 
     private GridAdapter gridAdapter;
     private List<ListFragment> fragmentList;
@@ -43,6 +49,16 @@ public class MessageFragment extends LazyLoadFragment{
     protected void lazyLoad() {
         initData();
         initView();
+        initEvent();
+    }
+
+    private void initEvent() {
+        btSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), SearchActivity.class));
+            }
+        });
     }
 
     private void initData() {

@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:windowSoftInputMode="stateHidden|adjustPan"
         android:allowBackup="true"
         android:icon="@mipmap/icon_app"
         android:label="@string/app_name"
@@ -27,7 +28,10 @@
         <activity android:name=".activity.BBSActivity" />
         <activity android:name=".activity.OtherFunctionActivity" />
         <activity android:name=".activity.UserMessageActivity" />
-        <activity android:name=".activity.InterestActivity"></activity>
+        <activity android:name=".activity.InterestActivity" />
+        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.ChatRoomActivity" />
+        <activity android:name=".activity.SplashActivity"></activity>
     </application>
 
 </manifest>

@@ -32,7 +32,7 @@ public class ListFragmentModel implements IListFragmentModel{
     public void getListData(String type,final IBaseRequestCallBack<List<Message>> iBaseRequestCallBack) {
         Log.i(TAG, "getListData: ");
         iBaseRequestCallBack.beforeRequest();
-        DataService service =  RetrofitHelper.get(DataService.class);
+        DataService service =  RetrofitHelper.get(DataService.class,ApiConfig.BASE_API_URL);
         service.getMessageData(type,10,1, ApiConfig.QUEST_KEY)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
